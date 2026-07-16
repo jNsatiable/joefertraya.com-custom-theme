@@ -60,6 +60,10 @@
 	height: auto;
 }
 
+.about-quirks .section-title {
+	text-align: center;
+}
+
 .jt-toggles {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
