@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'JT_THEME_VERSION', '0.3.3' );
+define( 'JT_THEME_VERSION', '0.4.0' );
 
 require_once get_template_directory() . '/includes/migrate-post-2411.php';
 require_once get_template_directory() . '/includes/disable-comments.php';
@@ -56,6 +56,19 @@ function jt_enqueue_assets() {
 		get_template_directory_uri() . '/assets/css/chrome.css',
 		array( 'jt-tokens' ),
 		JT_THEME_VERSION
+	);
+
+	// Same rule as jt-home-hero: never wp_add_inline_script() onto this
+	// handle, or the defer strategy silently drops.
+	wp_enqueue_script(
+		'jt-chrome',
+		get_template_directory_uri() . '/assets/js/chrome.js',
+		array(),
+		JT_THEME_VERSION,
+		array(
+			'strategy'  => 'defer',
+			'in_footer' => true,
+		)
 	);
 
 	if ( is_front_page() ) {
@@ -124,14 +137,16 @@ add_filter( 'template_include', 'jt_force_page_templates', 99 );
  */
 function jt_primary_menu_fallback() {
 	$items = array(
-		home_url( '/' )               => 'Home',
-		home_url( '/about/' )         => 'About',
-		home_url( '/portfolio/' )     => 'Portfolio',
-		home_url( '/category/blog/' ) => 'Blog',
+		array( home_url( '/' ), 'Home', is_front_page() ),
+		array( home_url( '/about/' ), 'About', is_page( 'about' ) ),
+		array( home_url( '/portfolio/' ), 'Portfolio', is_page( 'portfolio' ) ),
+		array( home_url( '/category/blog/' ), 'Blog', is_category( 'blog' ) || is_singular( 'post' ) ),
 	);
 	echo '<ul class="site-nav__list">';
-	foreach ( $items as $url => $label ) {
-		echo '<li><a href="' . esc_url( $url ) . '">' . esc_html( $label ) . '</a></li>';
+	foreach ( $items as $item ) {
+		list( $url, $label, $current ) = $item;
+		$aria = $current ? ' aria-current="page"' : '';
+		echo '<li><a href="' . esc_url( $url ) . '"' . $aria . '>' . esc_html( $label ) . '</a></li>';
 	}
 	echo '</ul>';
 }
