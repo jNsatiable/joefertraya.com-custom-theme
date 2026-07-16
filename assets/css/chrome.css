@@ -43,6 +43,9 @@
 	line-height: 0;
 	flex-shrink: 0;
 	transition: transform 0.2s ease;
+	/* The link now wraps text (the JT mark), so kill the default underline —
+	   it rendered as an orange strip under the mark via main.css's link color. */
+	text-decoration: none;
 }
 
 /* Text recreation of the JT icon (Averia Serif Libre 700, matched against
