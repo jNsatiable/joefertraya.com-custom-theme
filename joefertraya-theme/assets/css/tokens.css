@@ -12,6 +12,7 @@
 	--color-text: #403F43;    /* kit "text" — soft charcoal */
 	--color-accent: #FB923C;  /* kit "accent" — brand orange (links, CTAs) */
 	--color-mint: #BBF7D0;    /* kit extra — mint green highlight */
+	--color-charcoal: #403F43; /* same value as --color-text, used as a dark surface (hero bg) */
 
 	/* Typography */
 	--font-heading: "Poppins", sans-serif;

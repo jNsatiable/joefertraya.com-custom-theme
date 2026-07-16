@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'JT_THEME_VERSION', '0.1.0' );
+define( 'JT_THEME_VERSION', '0.2.0' );
 
 function jt_theme_setup() {
 	add_theme_support( 'title-tag' );
@@ -28,7 +28,7 @@ function jt_enqueue_assets() {
 	// Google Fonts: the four families from the design tokens. Weights expand as pages need them.
 	wp_enqueue_style(
 		'jt-fonts',
-		'https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Raleway:wght@400&family=Outfit:wght@400;500&family=Averia+Serif+Libre:wght@500&display=swap',
+		'https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Raleway:wght@400;600&family=Outfit:wght@400;500&family=Averia+Serif+Libre:wght@500&display=swap',
 		array(),
 		null
 	);
@@ -46,5 +46,27 @@ function jt_enqueue_assets() {
 		array( 'jt-tokens' ),
 		JT_THEME_VERSION
 	);
+
+	if ( is_front_page() ) {
+		wp_enqueue_style(
+			'jt-home-hero',
+			get_template_directory_uri() . '/assets/css/home-hero.css',
+			array( 'jt-tokens' ),
+			JT_THEME_VERSION
+		);
+
+		// No wp_add_inline_script() on this handle — an 'after' inline script
+		// silently cancels the defer strategy (WP core refuses to combine them).
+		wp_enqueue_script(
+			'jt-home-hero',
+			get_template_directory_uri() . '/assets/js/home-hero.js',
+			array(),
+			JT_THEME_VERSION,
+			array(
+				'strategy'  => 'defer',
+				'in_footer' => true,
+			)
+		);
+	}
 }
 add_action( 'wp_enqueue_scripts', 'jt_enqueue_assets' );
