@@ -8,12 +8,14 @@ get_header();
 ?>
 
 <section class="portfolio-hero">
+	<svg class="portfolio-hero__divider portfolio-hero__divider--top" viewBox="0 0 1000 100" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M761.9,44.1L643.1,27.2L333.8,98L0,3.8V0l1000,0v3.9"/></svg>
 	<div class="container portfolio-hero__inner">
 		<h1 class="portfolio-hero__title">Hey!</h1>
 		<p>Unfortunately, most of J's skills can't be easily represented visually, so he is actively working on finding effective ways to showcase them.</p>
 		<p>For the meantime, feel free to explore his latest projects through the following channels. Additionally, a curated collection of his photography and retouching work is featured below.</p>
 		<?php jt_social_icons( 'portfolio-hero__social' ); ?>
 	</div>
+	<svg class="portfolio-hero__divider portfolio-hero__divider--bottom" viewBox="0 0 1000 100" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M761.9,44.1L643.1,27.2L333.8,98L0,3.8V0l1000,0v3.9"/></svg>
 </section>
 
 <section class="page-section gallery-section">
