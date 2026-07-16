@@ -25,6 +25,7 @@ $jt_skills = array(
 
 <section class="home-hero" data-skills="<?php echo esc_attr( wp_json_encode( $jt_skills ) ); ?>">
 	<canvas class="home-hero__canvas" aria-hidden="true"></canvas>
+	<div class="container home-hero__container">
 	<div class="home-hero__card">
 		<h1 class="home-hero__title">
 			Hi! I'm <span class="home-hero__accent">J</span>
@@ -39,6 +40,7 @@ $jt_skills = array(
 			<a class="home-hero__btn" href="<?php echo esc_url( home_url( '/about/' ) ); ?>">About Me</a>
 			<a class="home-hero__btn home-hero__btn--accent" href="<?php echo esc_url( home_url( '/portfolio/' ) ); ?>">My Work</a>
 		</div>
+	</div>
 	</div>
 </section>
 
