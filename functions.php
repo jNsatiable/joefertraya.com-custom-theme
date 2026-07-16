@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'JT_THEME_VERSION', '0.5.0' );
+define( 'JT_THEME_VERSION', '0.6.0' );
 
 require_once get_template_directory() . '/includes/migrate-post-2411.php';
 require_once get_template_directory() . '/includes/disable-comments.php';
@@ -102,6 +102,18 @@ function jt_enqueue_assets() {
 	}
 }
 add_action( 'wp_enqueue_scripts', 'jt_enqueue_assets' );
+
+/**
+ * Set data-theme in <head> before any CSS renders — prevents a flash of the
+ * wrong theme on load (Rentl pattern). Deliberately a raw wp_head print at
+ * priority 1, NOT wp_add_inline_script(): attaching inline JS to a deferred
+ * handle silently cancels its defer strategy (Framework gotcha), and this
+ * must run before paint anyway.
+ */
+function jt_theme_bootstrap_script() {
+	echo '<script>!function(){var s;try{s=localStorage.getItem("jt-theme")}catch(e){}if("dark"!==s&&"light"!==s)s=window.matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light";document.documentElement.setAttribute("data-theme",s)}();</script>' . "\n";
+}
+add_action( 'wp_head', 'jt_theme_bootstrap_script', 1 );
 
 /**
  * Force this theme's page templates for the replicated pages.
