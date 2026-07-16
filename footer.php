@@ -13,7 +13,7 @@
 			<a href="<?php echo esc_url( home_url( '/category/blog/' ) ); ?>">Blog</a>
 		</nav>
 		<?php jt_social_icons( 'site-footer__social' ); ?>
-		<h6 class="site-footer__tagline">J of All Trades: Mastering the Art of Many</h6>
+		<h6 class="site-footer__tagline"><?php echo esc_html( get_bloginfo( 'description' ) ); ?></h6>
 		<a class="site-footer__top" href="#top" aria-label="<?php esc_attr_e( 'Back to top', 'joefertraya' ); ?>">
 			<svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M8 13l4-4 4 4"></path></svg>
 		</a>
