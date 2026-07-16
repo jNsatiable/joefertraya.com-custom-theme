@@ -13,6 +13,7 @@
 	--color-accent: #FB923C;  /* kit "accent" — brand orange (links, CTAs) */
 	--color-mint: #BBF7D0;    /* kit extra — mint green highlight */
 	--color-charcoal: #403F43; /* same value as --color-text, used as a dark surface (hero bg) */
+	--color-light-section: #F3F5F8; /* light blue-gray CTA band bg (from About/Portfolio pages) */
 
 	/* Typography */
 	--font-heading: "Poppins", sans-serif;

@@ -1,0 +1,178 @@
+/* Site chrome — header and footer, replicating the Elementor HF templates (posts 100/590). */
+
+.site-header {
+	background: #fff;
+	border-bottom: 1px solid rgba(64, 63, 67, 0.08);
+}
+
+.site-header__inner {
+	display: flex;
+	align-items: center;
+	gap: 28px;
+	padding-block: 14px;
+}
+
+.site-header__logo {
+	display: flex;
+	line-height: 0;
+}
+
+.site-header__logo img {
+	width: 56px;
+	height: 56px;
+	border-radius: 50%;
+}
+
+.site-nav {
+	margin-left: auto;
+}
+
+.site-nav__list {
+	display: flex;
+	gap: 28px;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.site-nav__list a {
+	font-family: var(--font-secondary);
+	font-weight: 600;
+	font-size: 16px;
+	color: var(--color-text);
+	text-decoration: none;
+}
+
+@media (hover: hover) {
+	.site-nav__list a:hover {
+		color: var(--color-accent);
+	}
+}
+
+.jt-btn {
+	display: inline-block;
+	font-family: var(--font-secondary);
+	font-weight: 600;
+	font-size: 16px;
+	color: #fff;
+	background: var(--color-accent);
+	padding: 12px 24px;
+	border-radius: 4px;
+	text-decoration: none;
+}
+
+@media (hover: hover) {
+	.jt-btn:hover {
+		background: var(--color-charcoal);
+		color: #fff;
+	}
+}
+
+.site-footer {
+	background: var(--color-charcoal);
+	color: #fff;
+	margin-top: 0;
+}
+
+.site-footer__inner {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 22px;
+	padding-block: 50px 30px;
+	text-align: center;
+}
+
+.site-footer__logo img {
+	width: 220px;
+	height: auto;
+}
+
+.site-footer__nav {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 24px;
+}
+
+.site-footer__nav a {
+	font-family: var(--font-heading);
+	font-weight: 500;
+	font-size: 15px;
+	color: #fff;
+	text-decoration: none;
+}
+
+@media (hover: hover) {
+	.site-footer__nav a:hover {
+		color: var(--color-accent);
+	}
+}
+
+.jt-social {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 20px;
+}
+
+.jt-social a {
+	color: #fff;
+	display: flex;
+	align-items: center;
+}
+
+@media (hover: hover) {
+	.jt-social a:hover {
+		color: var(--color-accent);
+	}
+}
+
+.site-footer__tagline {
+	font-family: var(--font-secondary);
+	font-weight: 400;
+	font-size: 15px;
+	color: #fff;
+	margin: 0;
+}
+
+.site-footer__top {
+	color: #fff;
+	line-height: 0;
+}
+
+@media (hover: hover) {
+	.site-footer__top:hover {
+		color: var(--color-accent);
+	}
+}
+
+.site-footer__copyright {
+	font-family: var(--font-secondary);
+	font-weight: 400;
+	font-size: 13px;
+	color: var(--color-bg);
+	margin: 0;
+}
+
+@media (max-width: 767px) {
+	.site-header__inner {
+		flex-wrap: wrap;
+		gap: 14px;
+	}
+
+	.site-nav {
+		order: 3;
+		width: 100%;
+		margin-left: 0;
+	}
+
+	.site-nav__list {
+		flex-wrap: wrap;
+		gap: 16px;
+	}
+
+	.site-header__cta {
+		margin-left: auto;
+	}
+}

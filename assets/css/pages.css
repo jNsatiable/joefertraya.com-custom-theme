@@ -1,0 +1,237 @@
+/* Shared inner-page styles: About, Portfolio, Contact, blog. Tweaked per page later. */
+
+.page-section {
+	padding-block: 60px;
+}
+
+.page-title {
+	font-size: 44px;
+	margin-bottom: 24px;
+}
+
+.section-title {
+	font-size: 32px;
+	margin-bottom: 8px;
+}
+
+/* --- About --- */
+
+.about-intro__grid {
+	display: grid;
+	grid-template-columns: 1.1fr 0.9fr;
+	gap: 48px;
+	align-items: center;
+}
+
+.about-intro__text p {
+	margin: 0 0 1em;
+}
+
+.about-intro__text .jt-btn {
+	margin-top: 8px;
+}
+
+.about-intro__photo img {
+	border-radius: 8px;
+	width: 100%;
+	height: auto;
+}
+
+.jt-toggles {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 14px 32px;
+	margin-top: 24px;
+}
+
+.jt-toggle {
+	border-bottom: 1px solid rgba(64, 63, 67, 0.15);
+	padding-bottom: 14px;
+}
+
+.jt-toggle summary {
+	font-family: var(--font-heading);
+	font-weight: 600;
+	font-size: 17px;
+	cursor: pointer;
+	list-style: none;
+	position: relative;
+	padding-right: 28px;
+}
+
+.jt-toggle summary::-webkit-details-marker {
+	display: none;
+}
+
+.jt-toggle summary::after {
+	content: "+";
+	position: absolute;
+	right: 4px;
+	top: 0;
+	color: var(--color-accent);
+	font-size: 20px;
+	line-height: 1.2;
+}
+
+.jt-toggle[open] summary::after {
+	content: "\2212";
+}
+
+.jt-toggle__body {
+	padding-top: 10px;
+}
+
+.jt-toggle__body p {
+	margin: 0;
+}
+
+/* --- CTA band --- */
+
+.jt-cta {
+	background: var(--color-light-section);
+	text-align: center;
+}
+
+.jt-cta__title {
+	font-size: 30px;
+	margin-bottom: 10px;
+}
+
+.jt-cta__sub {
+	margin: 0 0 24px;
+}
+
+/* --- Portfolio --- */
+
+.portfolio-hero {
+	position: relative;
+	background: var(--color-charcoal) url('https://joefertraya.com/wp-content/uploads/2024/01/P7030595-scaled.jpg') center / cover no-repeat;
+	color: #fff;
+}
+
+.portfolio-hero::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background: rgba(64, 63, 67, 0.72);
+}
+
+.portfolio-hero__inner {
+	position: relative;
+	padding-block: 90px;
+	max-width: 720px;
+}
+
+.portfolio-hero__title {
+	color: #fff;
+	font-size: 52px;
+}
+
+.portfolio-hero__social {
+	justify-content: flex-start;
+	margin-top: 22px;
+}
+
+.gallery-section {
+	text-align: center;
+}
+
+.gallery-section__hint {
+	font-family: var(--font-secondary);
+	font-weight: 400;
+	font-size: 15px;
+	color: var(--color-text);
+	opacity: 0.7;
+	margin: 0 0 20px;
+}
+
+.gallery-section__embed img {
+	max-width: 100%;
+	height: auto;
+	border-radius: 6px;
+}
+
+/* --- Blog --- */
+
+.blog-archive__grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+	gap: 32px;
+}
+
+.blog-card {
+	background: #fff;
+	border: 1px solid rgba(64, 63, 67, 0.1);
+	border-radius: 8px;
+	overflow: hidden;
+}
+
+.blog-card__thumb img {
+	display: block;
+	width: 100%;
+	height: auto;
+}
+
+.blog-card__body {
+	padding: 20px 24px 24px;
+}
+
+.blog-card__title {
+	font-size: 20px;
+	margin: 0 0 4px;
+}
+
+.blog-card__title a {
+	color: var(--color-text);
+	text-decoration: none;
+}
+
+.blog-card__date {
+	font-size: 13px;
+	opacity: 0.65;
+	margin: 0 0 10px;
+}
+
+.blog-card__excerpt {
+	margin: 0 0 12px;
+}
+
+.blog-card__more {
+	font-family: var(--font-secondary);
+	font-weight: 600;
+	text-decoration: none;
+}
+
+.post-article__inner {
+	max-width: 820px;
+}
+
+.post-article__inner img {
+	border-radius: 6px;
+}
+
+/* --- Responsive --- */
+
+@media (max-width: 900px) {
+	.about-intro__grid {
+		grid-template-columns: 1fr;
+	}
+
+	.jt-toggles {
+		grid-template-columns: 1fr;
+	}
+}
+
+@media (max-width: 767px) {
+	.page-section {
+		padding-block: 40px;
+	}
+
+	.page-title {
+		font-size: 34px;
+	}
+
+	.portfolio-hero__title {
+		font-size: 40px;
+	}
+}
