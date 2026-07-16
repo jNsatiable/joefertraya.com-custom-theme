@@ -248,6 +248,12 @@
 	padding-block: 50px 0;
 }
 
+/* Home only: the hero's charcoal runs straight into the footer, so a
+   hairline seam marks where content ends and the footer begins. */
+body.home .site-footer {
+	border-top: 1px solid var(--footer-seam);
+}
+
 .site-footer__grid {
 	display: grid;
 	grid-template-columns: 1fr;

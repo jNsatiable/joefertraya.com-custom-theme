@@ -21,6 +21,7 @@
 	--color-light-section: #F3F5F8; /* CTA band bg */
 	--color-white: #FFFFFF;   /* pure white — logo lockup block, text on accent — same in both modes */
 	--color-divider: #D8D8D8; /* hairline dividers */
+	--footer-seam: rgba(255, 255, 255, 0.18); /* hairline where charcoal surfaces meet (Home hero → footer) — mode-invariant */
 
 	/* Mode-dependent surfaces (dark values below) */
 	--surface-footer: #403F43;             /* footer: brand charcoal in light; steps darker in dark so it anchors below the bands */
