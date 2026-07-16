@@ -42,7 +42,6 @@
 	display: flex;
 	line-height: 0;
 	flex-shrink: 0;
-	transition: transform 0.2s ease;
 	/* The link now wraps text (the JT mark), so kill the default underline —
 	   it rendered as an orange strip under the mark via main.css's link color. */
 	text-decoration: none;
@@ -63,11 +62,12 @@
 	font-weight: 700;
 	font-size: 19px;
 	letter-spacing: 0.01em;
+	transition: background 0.2s ease;
 }
 
 @media (hover: hover) {
-	.site-header__logo:hover {
-		transform: translateY(-5px);
+	.site-header__logo:hover .site-header__logo-mark {
+		background: var(--color-accent);
 	}
 }
 
