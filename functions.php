@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /**
  * Joefer Traya theme setup and asset loading.
  */
@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'JT_THEME_VERSION', '0.4.0' );
+define( 'JT_THEME_VERSION', '0.4.1' );
 
 require_once get_template_directory() . '/includes/migrate-post-2411.php';
 require_once get_template_directory() . '/includes/disable-comments.php';
@@ -79,7 +79,7 @@ function jt_enqueue_assets() {
 			JT_THEME_VERSION
 		);
 
-		// No wp_add_inline_script() on this handle — an 'after' inline script
+		// No wp_add_inline_script() on this handle â€” an 'after' inline script
 		// silently cancels the defer strategy (WP core refuses to combine them).
 		wp_enqueue_script(
 			'jt-home-hero',
@@ -107,7 +107,7 @@ add_action( 'wp_enqueue_scripts', 'jt_enqueue_assets' );
  *
  * The pages carry stale _wp_page_template meta pointing at the Elementor
  * plugin's own templates (elementor_header_footer etc.), and a page
- * template set in meta outranks page-{slug}.php in the hierarchy — so
+ * template set in meta outranks page-{slug}.php in the hierarchy â€” so
  * without this, Elementor (still active) hijacks the whole document.
  * front-page.php is unaffected (it outranks page templates), which is why
  * Home worked while About/Portfolio/Contact didn't.
@@ -132,7 +132,7 @@ function jt_force_page_templates( $template ) {
 add_filter( 'template_include', 'jt_force_page_templates', 99 );
 
 /**
- * Fallback for the primary menu until one is assigned in wp-admin —
+ * Fallback for the primary menu until one is assigned in wp-admin â€”
  * mirrors the live site's nav so the header never renders empty.
  */
 function jt_primary_menu_fallback() {
@@ -152,7 +152,7 @@ function jt_primary_menu_fallback() {
 }
 
 /**
- * Social icon row (Upwork, Instagram, Flickr, GitHub) — used in the footer
+ * Social icon row (Upwork, Instagram, Flickr, GitHub) â€” used in the footer
  * and the Portfolio hero. Inline SVGs, no icon-font dependency.
  */
 function jt_social_icons( $class = '' ) {
