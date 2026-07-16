@@ -5,12 +5,18 @@
 	display: flex;
 	align-items: center;
 	min-height: 60vh;
-	padding: 50px;
+	/* Horizontal gutters come from .home-hero__container (the site .container),
+	   so the card's left edge lines up with the header bar's. */
+	padding: 50px 0;
 	background: var(--color-charcoal);
 	overflow: hidden;
 	/* Tuck up behind the floating header so the charcoal runs edge-to-edge under the bar. */
 	margin-top: calc(var(--header-pull) * -1);
 	padding-top: calc(50px + var(--header-pull));
+}
+
+.home-hero__container {
+	width: 100%;
 }
 
 .home-hero__canvas {
@@ -124,7 +130,7 @@
 @media (max-width: 767px) {
 	.home-hero {
 		min-height: 40vh;
-		padding: 10px;
+		padding: 10px 0;
 		margin-top: calc(var(--header-pull) * -1);
 		padding-top: calc(10px + var(--header-pull));
 	}
