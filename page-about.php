@@ -44,7 +44,7 @@ get_header();
 			</details>
 			<details class="jt-toggle">
 				<summary>My Kryptonite</summary>
-				<div class="jt-toggle__body"><p>As someone who always has something good to say about other people, I struggle with giving out constructive criticisms.</p></div>
+				<div class="jt-toggle__body"><p>As someone who always has something good to say about other people, I struggle with giving out constructive criticism. Though if words of appreciation fuel you better than tough love, that's a plus, no?</p></div>
 			</details>
 			<details class="jt-toggle">
 				<summary>My Current interests</summary>
