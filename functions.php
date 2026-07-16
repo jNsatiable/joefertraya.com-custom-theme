@@ -7,7 +7,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'JT_THEME_VERSION', '0.3.0' );
+define( 'JT_THEME_VERSION', '0.3.1' );
+
+require_once get_template_directory() . '/includes/migrate-post-2411.php';
 
 function jt_theme_setup() {
 	add_theme_support( 'title-tag' );
