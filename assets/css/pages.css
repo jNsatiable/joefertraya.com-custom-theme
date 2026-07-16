@@ -224,51 +224,6 @@
 	margin: 0 0 20px;
 }
 
-/*
- * STOPGAP (delete when the hand-built gallery replaces the Flickr embeds):
- * Flickr's labels live inside its cross-origin iframe, unreachable by our
- * CSS — so these are gradient bands layered ON TOP of the iframe's top and
- * bottom edges, fading in on hover (when Flickr shows its labels) to give
- * the white text something dark to sit on. pointer-events: none keeps the
- * embed fully clickable. Calibrated to Flickr's current label zones; if
- * their embed layout changes, these bands may misalign.
- */
-.gallery-section__embed {
-	display: inline-block;
-	position: relative;
-	max-width: 100%;
-}
-
-.gallery-section__embed::before,
-.gallery-section__embed::after {
-	content: "";
-	position: absolute;
-	left: 0;
-	right: 0;
-	height: 64px;
-	pointer-events: none;
-	opacity: 0;
-	transition: opacity 0.2s ease;
-	z-index: 1;
-}
-
-.gallery-section__embed::before {
-	top: 0;
-	background: linear-gradient(var(--photo-scrim), transparent);
-}
-
-.gallery-section__embed::after {
-	bottom: 0;
-	background: linear-gradient(transparent, var(--photo-scrim));
-}
-
-@media (hover: hover) {
-	.gallery-section__embed:hover::before,
-	.gallery-section__embed:hover::after {
-		opacity: 1;
-	}
-}
-
 .gallery-section__embed img {
 	max-width: 100%;
 	height: auto;
