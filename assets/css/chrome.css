@@ -243,7 +243,7 @@
 /* --- Footer — Rentl-style columns on the site's charcoal surface --- */
 
 .site-footer {
-	background: var(--color-charcoal);
+	background: var(--surface-footer);
 	color: #fff;
 	padding-block: 50px 0;
 }
