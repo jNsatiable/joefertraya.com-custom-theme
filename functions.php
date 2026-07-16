@@ -86,6 +86,35 @@ function jt_enqueue_assets() {
 add_action( 'wp_enqueue_scripts', 'jt_enqueue_assets' );
 
 /**
+ * Force this theme's page templates for the replicated pages.
+ *
+ * The pages carry stale _wp_page_template meta pointing at the Elementor
+ * plugin's own templates (elementor_header_footer etc.), and a page
+ * template set in meta outranks page-{slug}.php in the hierarchy — so
+ * without this, Elementor (still active) hijacks the whole document.
+ * front-page.php is unaffected (it outranks page templates), which is why
+ * Home worked while About/Portfolio/Contact didn't.
+ */
+function jt_force_page_templates( $template ) {
+	$map = array(
+		'about'        => 'page-about.php',
+		'portfolio'    => 'page-portfolio.php',
+		'contact-form' => 'page-contact-form.php',
+	);
+	if ( is_page() ) {
+		$slug = get_post_field( 'post_name', get_queried_object_id() );
+		if ( isset( $map[ $slug ] ) ) {
+			$file = get_template_directory() . '/' . $map[ $slug ];
+			if ( file_exists( $file ) ) {
+				return $file;
+			}
+		}
+	}
+	return $template;
+}
+add_filter( 'template_include', 'jt_force_page_templates', 99 );
+
+/**
  * Fallback for the primary menu until one is assigned in wp-admin —
  * mirrors the live site's nav so the header never renders empty.
  */
