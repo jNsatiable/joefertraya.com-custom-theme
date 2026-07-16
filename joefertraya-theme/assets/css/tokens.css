@@ -1,0 +1,30 @@
+/*
+ * Design tokens — extracted from the live site's Elementor global kit
+ * (reference-files/uploads/elementor/css/post-18.css).
+ * Every color/font/layout value in the theme should reference these,
+ * never a raw hex or font name.
+ */
+
+:root {
+	/* Color */
+	--color-bg: #FBFEFB;      /* kit "primary" — near-white page background */
+	--color-surface: #FAF0E4; /* kit "secondary" — warm cream section background */
+	--color-text: #403F43;    /* kit "text" — soft charcoal */
+	--color-accent: #FB923C;  /* kit "accent" — brand orange (links, CTAs) */
+	--color-mint: #BBF7D0;    /* kit extra — mint green highlight */
+
+	/* Typography */
+	--font-heading: "Poppins", sans-serif;
+	--font-secondary: "Raleway", sans-serif;
+	--font-body: "Outfit", sans-serif;
+	--font-display: "Averia Serif Libre", serif;
+	--weight-heading: 600;
+	--weight-secondary: 400;
+	--weight-body: 400;
+	--weight-display: 500;
+	--size-display: 50px;
+
+	/* Layout */
+	--content-max: 1140px;
+	--gap: 20px;
+}

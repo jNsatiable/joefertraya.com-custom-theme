@@ -1,0 +1,44 @@
+/* Base styles — token-driven foundation. Page-specific styles come later. */
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	background: var(--color-bg);
+	color: var(--color-text);
+	font-family: var(--font-body);
+	font-weight: var(--weight-body);
+	line-height: 1.6;
+	-webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: var(--font-heading);
+	font-weight: var(--weight-heading);
+	line-height: 1.2;
+	margin: 0 0 0.5em;
+}
+
+a {
+	color: var(--color-accent);
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+.container {
+	max-width: var(--content-max);
+	margin-inline: auto;
+	padding-inline: var(--gap);
+}
