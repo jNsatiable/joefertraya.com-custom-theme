@@ -29,5 +29,5 @@
 	/* Layout */
 	--content-max: 1140px;
 	--gap: 20px;
-	--header-pull: 84px; /* floating header's flow height (16px gap + 68px bar) — sections that tuck behind it offset by this */
+	--header-pull: 88px; /* floating header's flow height (16px gap + 71px measured bar, +1 safety) — sections that tuck behind it offset by this. Slightly over is invisible; under leaves a background sliver above the hero. */
 }
