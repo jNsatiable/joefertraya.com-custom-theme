@@ -155,17 +155,25 @@
 	color: #fff;
 }
 
-.portfolio-hero::before {
-	content: "";
-	position: absolute;
-	inset: 0;
-	background: rgba(64, 63, 67, 0.72);
-}
-
+/* No color overlay on the photo (removed 2026-07-17 per Joefer) —
+   readability comes from the Rentl text-shadow treatment below instead.
+   Note from Rentl: the shadow is a perceived-readability fix; WCAG contrast
+   math ignores shadows. If copy ever sits over bright photo highlights,
+   a localized gradient scrim is the compliant tool. */
 .portfolio-hero__inner {
 	position: relative;
 	padding-block: 90px;
 	max-width: 720px;
+}
+
+.portfolio-hero__inner h1,
+.portfolio-hero__inner p {
+	text-shadow: 0 1px 3px rgba(0, 0, 0, 0.55);
+}
+
+.portfolio-hero__inner .jt-social svg,
+.portfolio-hero__inner .jt-social img {
+	filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.55));
 }
 
 /* "Pyramids" shape dividers — the original Elementor hero's diagonal edge
@@ -199,8 +207,8 @@
 }
 
 .portfolio-hero__social {
-	justify-content: flex-start;
-	margin-top: 22px;
+	justify-content: center;
+	margin-top: 44px;
 }
 
 .gallery-section {
