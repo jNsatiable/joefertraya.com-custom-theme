@@ -12,6 +12,7 @@ define( 'JT_THEME_VERSION', '0.5.0' );
 require_once get_template_directory() . '/includes/migrate-post-2411.php';
 require_once get_template_directory() . '/includes/disable-comments.php';
 require_once get_template_directory() . '/includes/cleanup-orphan-content.php';
+require_once get_template_directory() . '/includes/update-seo-titles.php';
 
 function jt_theme_setup() {
 	add_theme_support( 'title-tag' );
