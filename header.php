@@ -14,7 +14,7 @@
 	<div class="container">
 		<div class="site-header__bar">
 			<a class="site-header__logo" href="<?php echo esc_url( home_url( '/' ) ); ?>" aria-label="<?php esc_attr_e( 'Joefer Traya — home', 'joefertraya' ); ?>">
-				<img src="<?php echo esc_url( home_url( '/wp-content/uploads/2024/01/joefertraya-icon-gray-bg-150x150.png' ) ); ?>" alt="Joefer Traya logo" width="48" height="48">
+				<img src="<?php echo esc_url( home_url( '/wp-content/uploads/2024/01/joefertraya-icon-gray-bg-150x150.png' ) ); ?>" alt="Joefer Traya logo" width="40" height="40">
 			</a>
 			<nav class="site-nav" id="site-nav" aria-label="<?php esc_attr_e( 'Primary', 'joefertraya' ); ?>">
 				<?php
