@@ -1,0 +1,6 @@
+# Theme-level rules only (this is NOT the WordPress root .htaccess).
+# Blocks web access to repo/meta files that deploy alongside the theme
+# (CLAUDE.md, .gitignore, this file itself) — none are needed at runtime.
+<FilesMatch "(?i)(^\.|\.md$)">
+	Require all denied
+</FilesMatch>

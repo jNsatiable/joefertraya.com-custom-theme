@@ -9,7 +9,9 @@ Hand-built WordPress custom theme replacing the current Elementor site. No page 
 
 ## Layout
 
-- `joefertraya-theme/` — the theme (the deliverable). Design tokens live in `assets/css/tokens.css`; every color/font/layout value references a token, never a raw value.
+- **The repo root is the theme itself** (`style.css`, `functions.php`, `assets/`, page templates). This is deliberate: Hostinger's native Git deployment clones the whole repo into one target directory (`public_html/wp-content/themes/joefertraya-theme`), so the repo must be the theme — no deploy script involved. If a companion plugin is ever needed, it gets its own repo + Git deployment.
+- Design tokens live in `assets/css/tokens.css`; every color/font/layout value references a token, never a raw value.
+- `.htaccess` here is theme-level only (blocks web access to `*.md` and dotfiles on the live server) — it is NOT the WordPress root `.htaccess`, which stays unmanaged by git per the Framework doc.
 - `reference-files/` — gitignored copies of the live site's current theme, Elementor CSS, and content export. Read-only inputs, not part of the build.
 
 ## Workflow (from the Framework doc, non-negotiable)
