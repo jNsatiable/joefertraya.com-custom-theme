@@ -23,6 +23,7 @@
 	--color-divider: #D8D8D8; /* hairline dividers */
 
 	/* Mode-dependent surfaces (dark values below) */
+	--surface-footer: #403F43;             /* footer: brand charcoal in light; steps darker in dark so it anchors below the bands */
 	--surface-card: #FFFFFF;               /* cards, mobile nav panel */
 	--surface-bar: #FFFFFF;                /* floating header bar */
 	--bar-blur: none;                      /* frosted-glass blur, dark mode only */
@@ -52,6 +53,7 @@
 /* Dark mode — system preference default */
 @media (prefers-color-scheme: dark) {
 	:root {
+		--surface-footer: #1F1E21;
 		--color-bg: #29282B;
 		--color-text: #E7E6E9;
 		--color-light-section: #343337;
@@ -69,6 +71,7 @@
 
 /* Dark mode — explicit toggle */
 [data-theme="dark"] {
+	--surface-footer: #1F1E21;
 	--color-bg: #29282B;
 	--color-text: #E7E6E9;
 	--color-light-section: #343337;
@@ -85,6 +88,7 @@
 
 /* Light mode — explicit toggle (overrides system dark) */
 [data-theme="light"] {
+	--surface-footer: #403F43;
 	--color-bg: #FBFEFB;
 	--color-text: #403F43;
 	--color-light-section: #F3F5F8;
