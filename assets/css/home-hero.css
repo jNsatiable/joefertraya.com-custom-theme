@@ -61,7 +61,10 @@
 .home-hero__sub {
 	font-family: var(--font-heading);
 	font-weight: var(--weight-heading);
-	font-size: 28px;
+	/* Fluid size so the line never wraps: floor fits a 375px viewport's card,
+	   2.15vw tracks the card through tablet widths, 28px is the design size. */
+	font-size: clamp(15px, 2.15vw, 28px);
+	white-space: nowrap;
 	color: #fff;
 	margin: 14px 0 0;
 }
