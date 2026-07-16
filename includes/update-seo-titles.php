@@ -17,20 +17,23 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 function jt_update_seo_titles_once() {
-	// v2: The SEO Framework auto-appends " - Joefer Traya", so the name was
-	// duplicated and the total ran to 69 chars. The custom part drops the
-	// name (41 chars; 56 with the suffix). All other operations here are
-	// idempotent, so the v2 flag simply re-runs the lot.
-	if ( get_option( 'jt_seo_titles_updated_v2' ) ) {
+	// v3: Portfolio's auto-generated title measured "far too short" (24
+	// chars) in the SEO meter; it now gets a custom title too — deliberately
+	// broad per Joefer (not skewed toward retouching/photography), echoing
+	// About's "multifaceted" vocabulary. 41 chars; 56 with the auto-suffix.
+	// All operations are idempotent, so the v3 flag simply re-runs the lot.
+	if ( get_option( 'jt_seo_titles_updated_v3' ) ) {
 		return;
 	}
 
 	// About (6): the chosen custom title, name left to the auto-suffix.
 	update_post_meta( 6, '_genesis_title', wp_slash( 'About J — Multifaceted Virtual Assistant' ) );
 
-	// Portfolio (705) + Contact (375): drop the stale overrides, let the
-	// SEO plugin auto-generate from the current Site Title.
-	delete_post_meta( 705, '_genesis_title' );
+	// Portfolio (705): broad custom title chosen in session.
+	update_post_meta( 705, '_genesis_title', wp_slash( 'Portfolio — The Work of a Multifaceted VA' ) );
+
+	// Contact (375): drop the stale override, let the SEO plugin
+	// auto-generate from the current Site Title.
 	delete_post_meta( 375, '_genesis_title' );
 
 	// Contact description typo: "hearbeat" -> "heartbeat".
@@ -39,6 +42,6 @@ function jt_update_seo_titles_once() {
 		update_post_meta( 375, '_genesis_description', wp_slash( str_replace( 'hearbeat', 'heartbeat', $desc ) ) );
 	}
 
-	update_option( 'jt_seo_titles_updated_v2', gmdate( 'Y-m-d' ) );
+	update_option( 'jt_seo_titles_updated_v3', gmdate( 'Y-m-d' ) );
 }
 add_action( 'init', 'jt_update_seo_titles_once' );
