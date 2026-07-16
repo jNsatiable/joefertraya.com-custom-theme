@@ -7,10 +7,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'JT_THEME_VERSION', '0.3.2' );
+define( 'JT_THEME_VERSION', '0.3.3' );
 
 require_once get_template_directory() . '/includes/migrate-post-2411.php';
 require_once get_template_directory() . '/includes/disable-comments.php';
+require_once get_template_directory() . '/includes/cleanup-orphan-content.php';
 
 function jt_theme_setup() {
 	add_theme_support( 'title-tag' );
