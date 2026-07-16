@@ -6,7 +6,7 @@
 
 			<div class="site-footer__brand">
 				<a class="site-footer__logo" href="<?php echo esc_url( home_url( '/' ) ); ?>">
-					<img src="<?php echo esc_url( home_url( '/wp-content/uploads/2024/01/joefertraya-icon-fullname-split-colors.png' ) ); ?>" alt="JoeferTraya.com" width="220" height="46">
+					<img src="<?php echo esc_url( home_url( '/wp-content/uploads/2024/01/joefertraya-icon-fullname-split-colors.png' ) ); ?>" alt="JoeferTraya.com" width="170" height="36">
 				</a>
 				<p class="site-footer__tagline"><?php echo esc_html( get_bloginfo( 'description' ) ); ?></p>
 				<?php jt_social_icons( 'site-footer__social' ); ?>
@@ -26,8 +26,8 @@
 				<p class="site-footer__heading">Contact</p>
 				<ul>
 					<li><a href="<?php echo esc_url( home_url( '/contact-form/' ) ); ?>">Get in touch</a></li>
-					<li><a href="https://www.upwork.com/freelancers/~0142984b3c47f365d6" target="_blank" rel="noopener">Upwork&nbsp;&#8599;</a></li>
-					<li><a href="https://www.instagram.com/retouch_by_j/" target="_blank" rel="noopener">Instagram&nbsp;&#8599;</a></li>
+					<li><a href="https://www.upwork.com/freelancers/~0142984b3c47f365d6" target="_blank" rel="noopener">Upwork</a></li>
+					<li><a href="https://www.instagram.com/retouch_by_j/" target="_blank" rel="noopener">Instagram</a></li>
 				</ul>
 			</nav>
 

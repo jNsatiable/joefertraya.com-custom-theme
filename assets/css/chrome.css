@@ -221,7 +221,7 @@
 }
 
 .site-footer__logo img {
-	width: 220px;
+	width: 170px;
 	height: auto;
 }
 
@@ -244,6 +244,13 @@
 	color: #fff;
 	display: flex;
 	align-items: center;
+}
+
+/* The Upwork icon is an <img> (brand SVG) — pin it to the same optical
+   size as the inline-SVG icons, whatever its intrinsic dimensions. */
+.jt-social img {
+	height: 22px;
+	width: auto;
 }
 
 @media (hover: hover) {
