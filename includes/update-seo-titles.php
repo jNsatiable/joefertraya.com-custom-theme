@@ -17,12 +17,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 function jt_update_seo_titles_once() {
-	if ( get_option( 'jt_seo_titles_updated' ) ) {
+	// v2: The SEO Framework auto-appends " - Joefer Traya", so the name was
+	// duplicated and the total ran to 69 chars. The custom part drops the
+	// name (41 chars; 56 with the suffix). All other operations here are
+	// idempotent, so the v2 flag simply re-runs the lot.
+	if ( get_option( 'jt_seo_titles_updated_v2' ) ) {
 		return;
 	}
 
-	// About (6): the chosen custom title.
-	update_post_meta( 6, '_genesis_title', wp_slash( 'About J — Joefer Traya, Multifaceted Virtual Assistant' ) );
+	// About (6): the chosen custom title, name left to the auto-suffix.
+	update_post_meta( 6, '_genesis_title', wp_slash( 'About J — Multifaceted Virtual Assistant' ) );
 
 	// Portfolio (705) + Contact (375): drop the stale overrides, let the
 	// SEO plugin auto-generate from the current Site Title.
@@ -35,6 +39,6 @@ function jt_update_seo_titles_once() {
 		update_post_meta( 375, '_genesis_description', wp_slash( str_replace( 'hearbeat', 'heartbeat', $desc ) ) );
 	}
 
-	update_option( 'jt_seo_titles_updated', gmdate( 'Y-m-d' ) );
+	update_option( 'jt_seo_titles_updated_v2', gmdate( 'Y-m-d' ) );
 }
 add_action( 'init', 'jt_update_seo_titles_once' );
