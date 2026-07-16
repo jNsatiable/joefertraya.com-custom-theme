@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'JT_THEME_VERSION', '0.4.8' );
+define( 'JT_THEME_VERSION', '0.5.0' );
 
 require_once get_template_directory() . '/includes/migrate-post-2411.php';
 require_once get_template_directory() . '/includes/disable-comments.php';
@@ -32,7 +32,7 @@ function jt_enqueue_assets() {
 	// Google Fonts: the four families from the design tokens. Weights expand as pages need them.
 	wp_enqueue_style(
 		'jt-fonts',
-		'https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Raleway:wght@400;600&family=Outfit:wght@400;500&family=Averia+Serif+Libre:wght@500;700&display=swap',
+		'https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Raleway:wght@300;400;600&family=Outfit:wght@400;500&family=Averia+Serif+Libre:wght@300;500;700&display=swap',
 		array(),
 		null
 	);

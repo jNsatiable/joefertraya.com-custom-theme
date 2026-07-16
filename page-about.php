@@ -58,7 +58,7 @@ get_header();
 	<div class="container">
 		<h3 class="jt-cta__title">Ready to elevate your business to the next level?</h3>
 		<p class="jt-cta__sub">But first, how may I help you?<br>Let's discuss your project and make it happen!</p>
-		<a class="jt-btn" href="<?php echo esc_url( home_url( '/contact-form/' ) ); ?>">LET'S WORK TOGETHER</a>
+		<a class="jt-btn jt-btn--cta" href="<?php echo esc_url( home_url( '/contact-form/' ) ); ?>">LET'S WORK TOGETHER</a>
 	</div>
 </section>
 

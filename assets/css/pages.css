@@ -10,17 +10,40 @@
 }
 
 .section-title {
-	font-size: 32px;
-	margin-bottom: 8px;
+	font-size: 50px;
+	margin-bottom: 12px;
 }
 
 /* --- About --- */
+
+/* Charcoal intro band — same surface language as the Home hero, tucked
+   behind the floating header (values from the original post-6.css). */
+.about-intro {
+	background: var(--color-charcoal);
+	margin-top: calc(var(--header-pull) * -1);
+	padding-top: calc(60px + var(--header-pull));
+}
+
+.about-intro .page-title {
+	font-family: var(--font-display);
+	font-weight: var(--weight-display);
+	font-size: var(--size-display);
+	color: var(--color-white);
+}
 
 .about-intro__grid {
 	display: grid;
 	grid-template-columns: 1.1fr 0.9fr;
 	gap: 48px;
 	align-items: center;
+}
+
+.about-intro__text {
+	font-family: var(--font-display);
+	font-weight: 300;
+	font-size: 16px;
+	line-height: 1.5;
+	color: var(--color-white);
 }
 
 .about-intro__text p {
@@ -45,14 +68,15 @@
 }
 
 .jt-toggle {
-	border-bottom: 1px solid rgba(64, 63, 67, 0.15);
-	padding-bottom: 14px;
+	border-bottom: 0.5px solid var(--color-divider);
+	padding: 0 30px 30px 0;
 }
 
 .jt-toggle summary {
 	font-family: var(--font-heading);
 	font-weight: 600;
-	font-size: 17px;
+	font-size: 16px;
+	text-transform: capitalize;
 	cursor: pointer;
 	list-style: none;
 	position: relative;
@@ -78,7 +102,11 @@
 }
 
 .jt-toggle__body {
-	padding-top: 10px;
+	padding-top: 12px;
+	font-family: var(--font-heading);
+	font-weight: 300;
+	font-size: 16px;
+	line-height: 1.5;
 }
 
 .jt-toggle__body p {
@@ -93,12 +121,26 @@
 }
 
 .jt-cta__title {
-	font-size: 30px;
+	font-size: 50px;
+	line-height: 1.2;
 	margin-bottom: 10px;
 }
 
 .jt-cta__sub {
+	font-family: var(--font-secondary);
+	font-weight: 300;
+	font-size: 20px;
 	margin: 0 0 24px;
+}
+
+/* Page CTA buttons (RESUME excepted — it stays a standard .jt-btn):
+   the original's geometry — Raleway 18px/400, 11px radius, 17px padding. */
+.jt-btn--cta {
+	font-family: var(--font-secondary);
+	font-weight: 400;
+	font-size: 18px;
+	border-radius: 11px;
+	padding: 17px;
 }
 
 /* --- Portfolio --- */
@@ -228,6 +270,13 @@
 	}
 }
 
+@media (max-width: 1024px) {
+	.jt-cta__title,
+	.section-title {
+		font-size: 45px;
+	}
+}
+
 @media (max-width: 767px) {
 	.page-section {
 		padding-block: 40px;
@@ -235,6 +284,21 @@
 
 	.page-title {
 		font-size: 34px;
+	}
+
+	.about-intro {
+		padding-top: calc(40px + var(--header-pull));
+	}
+
+	.jt-cta__title,
+	.section-title {
+		font-size: 28px;
+		line-height: 1.1;
+	}
+
+	.jt-toggle summary,
+	.jt-toggle__body {
+		font-size: 14px;
 	}
 
 	.portfolio-hero__title {
