@@ -1,21 +1,36 @@
 /*
- * Design tokens — extracted from the live site's Elementor global kit
- * (reference-files/uploads/elementor/css/post-18.css).
- * Every color/font/layout value in the theme should reference these,
- * never a raw hex or font name.
+ * Design tokens. Light values on :root; dark values under both the system
+ * preference media query AND [data-theme="dark"], with [data-theme="light"]
+ * re-asserting light so the user's explicit toggle beats the OS setting in
+ * both directions (Rentl pattern). The head inline script sets data-theme
+ * before first paint, so there is no flash of the wrong theme.
+ *
+ * Brand constants (accent orange, the charcoal band surface, pure white)
+ * deliberately do NOT flip — the hero/About-intro/footer stay charcoal in
+ * both modes.
  */
 
 :root {
-	/* Color */
-	--color-bg: #FBFEFB;      /* kit "primary" — near-white page background */
+	/* Color — from the live site's Elementor global kit (post-18.css) */
+	--color-bg: #FBFEFB;      /* page background */
 	--color-surface: #FAF0E4; /* kit "secondary" — warm cream section background */
-	--color-text: #403F43;    /* kit "text" — soft charcoal */
-	--color-accent: #FB923C;  /* kit "accent" — brand orange (links, CTAs) */
+	--color-text: #403F43;    /* body text */
+	--color-accent: #FB923C;  /* brand orange (links, CTAs) — same in both modes */
 	--color-mint: #BBF7D0;    /* kit extra — mint green highlight */
-	--color-charcoal: #403F43; /* same value as --color-text, used as a dark surface (hero bg) */
-	--color-light-section: #F3F5F8; /* light blue-gray CTA band bg (from About/Portfolio pages) */
-	--color-white: #FFFFFF; /* pure white — logo lockup block, text on accent surfaces */
-	--color-divider: #D8D8D8; /* hairline dividers (About toggles, from post-6.css) */
+	--color-charcoal: #403F43; /* brand dark surface (hero/footer bands) — same in both modes */
+	--color-light-section: #F3F5F8; /* CTA band bg */
+	--color-white: #FFFFFF;   /* pure white — logo lockup block, text on accent — same in both modes */
+	--color-divider: #D8D8D8; /* hairline dividers */
+
+	/* Mode-dependent surfaces (dark values below) */
+	--surface-card: #FFFFFF;               /* cards, mobile nav panel */
+	--surface-bar: #FFFFFF;                /* floating header bar */
+	--bar-blur: none;                      /* frosted-glass blur, dark mode only */
+	--color-border: rgba(64, 63, 67, 0.1); /* card borders */
+	--color-border-strong: rgba(64, 63, 67, 0.3); /* control borders (hamburger, toggle) */
+	--shadow-color: rgba(64, 63, 67, 0.14); /* floating bar / panel shadows */
+	--logo-mark-bg: #403F43;               /* JT mark circle (accent in dark) */
+	--logo-mark-bg-hover: #FB923C;
 
 	/* Typography */
 	--font-heading: "Poppins", sans-serif;
@@ -32,4 +47,54 @@
 	--content-max: 1140px;
 	--gap: 20px;
 	--header-pull: 88px; /* floating header's flow height (16px gap + 71px measured bar, +1 safety) — sections that tuck behind it offset by this. Slightly over is invisible; under leaves a background sliver above the hero. */
+}
+
+/* Dark mode — system preference default */
+@media (prefers-color-scheme: dark) {
+	:root {
+		--color-bg: #29282B;
+		--color-text: #E7E6E9;
+		--color-light-section: #343337;
+		--color-divider: rgba(255, 255, 255, 0.14);
+		--surface-card: #37363A;
+		--surface-bar: rgba(41, 40, 43, 0.85);
+		--bar-blur: blur(12px);
+		--color-border: rgba(255, 255, 255, 0.08);
+		--color-border-strong: rgba(255, 255, 255, 0.3);
+		--shadow-color: rgba(0, 0, 0, 0.45);
+		--logo-mark-bg: #FB923C;
+		--logo-mark-bg-hover: #403F43;
+	}
+}
+
+/* Dark mode — explicit toggle */
+[data-theme="dark"] {
+	--color-bg: #29282B;
+	--color-text: #E7E6E9;
+	--color-light-section: #343337;
+	--color-divider: rgba(255, 255, 255, 0.14);
+	--surface-card: #37363A;
+	--surface-bar: rgba(41, 40, 43, 0.85);
+	--bar-blur: blur(12px);
+	--color-border: rgba(255, 255, 255, 0.08);
+	--color-border-strong: rgba(255, 255, 255, 0.3);
+	--shadow-color: rgba(0, 0, 0, 0.45);
+	--logo-mark-bg: #FB923C;
+	--logo-mark-bg-hover: #403F43;
+}
+
+/* Light mode — explicit toggle (overrides system dark) */
+[data-theme="light"] {
+	--color-bg: #FBFEFB;
+	--color-text: #403F43;
+	--color-light-section: #F3F5F8;
+	--color-divider: #D8D8D8;
+	--surface-card: #FFFFFF;
+	--surface-bar: #FFFFFF;
+	--bar-blur: none;
+	--color-border: rgba(64, 63, 67, 0.1);
+	--color-border-strong: rgba(64, 63, 67, 0.3);
+	--shadow-color: rgba(64, 63, 67, 0.14);
+	--logo-mark-bg: #403F43;
+	--logo-mark-bg-hover: #FB923C;
 }

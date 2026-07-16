@@ -1,8 +1,43 @@
 /**
- * Site chrome behavior: mobile nav toggle for the floating header.
- * Adapted from Rentl's main.js — data-nav-open on the header drives the
- * panel, with click-outside and Escape both closing it.
+ * Site chrome behavior: dark-mode toggle + mobile nav toggle for the
+ * floating header. Both adapted from Rentl's main.js.
  */
+
+/* Dark mode toggle — the head inline script already set data-theme before
+   paint; this handles the button state and click persistence. */
+(function () {
+	'use strict';
+
+	var STORAGE_KEY = 'jt-theme';
+	var html = document.documentElement;
+	var toggles = document.querySelectorAll('.jt-theme-toggle');
+	if (!toggles.length) {
+		return;
+	}
+
+	function applyTheme(theme) {
+		html.setAttribute('data-theme', theme);
+		toggles.forEach(function (btn) {
+			btn.setAttribute('data-current-theme', theme);
+			btn.setAttribute('aria-label', 'dark' === theme ? 'Switch to light mode' : 'Switch to dark mode');
+		});
+	}
+
+	applyTheme(html.getAttribute('data-theme') || 'light');
+
+	toggles.forEach(function (btn) {
+		btn.addEventListener('click', function () {
+			var next = 'dark' === html.getAttribute('data-theme') ? 'light' : 'dark';
+			try {
+				localStorage.setItem(STORAGE_KEY, next);
+			} catch (err) {
+				/* private mode — theme still applies for this page view */
+			}
+			applyTheme(next);
+		});
+	});
+})();
+
 (function () {
 	'use strict';
 
