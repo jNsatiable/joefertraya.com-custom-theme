@@ -14,6 +14,7 @@
 	--color-mint: #BBF7D0;    /* kit extra — mint green highlight */
 	--color-charcoal: #403F43; /* same value as --color-text, used as a dark surface (hero bg) */
 	--color-light-section: #F3F5F8; /* light blue-gray CTA band bg (from About/Portfolio pages) */
+	--color-white: #FFFFFF; /* pure white — logo lockup block, text on accent surfaces */
 
 	/* Typography */
 	--font-heading: "Poppins", sans-serif;

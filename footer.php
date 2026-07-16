@@ -5,8 +5,8 @@
 		<div class="site-footer__grid">
 
 			<div class="site-footer__brand">
-				<a class="site-footer__logo" href="<?php echo esc_url( home_url( '/' ) ); ?>">
-					<img src="<?php echo esc_url( home_url( '/wp-content/uploads/2024/01/joefertraya-icon-fullname-split-colors.png' ) ); ?>" alt="JoeferTraya.com" width="170" height="36">
+				<a class="site-footer__logo" href="<?php echo esc_url( home_url( '/' ) ); ?>" aria-label="<?php esc_attr_e( 'JoeferTraya.com — home', 'joefertraya' ); ?>">
+					<span class="site-footer__lockup" aria-hidden="true"><span class="site-footer__lockup-first">Joefer</span><span class="site-footer__lockup-last">Traya</span></span>
 				</a>
 				<p class="site-footer__tagline"><?php echo esc_html( get_bloginfo( 'description' ) ); ?></p>
 				<?php jt_social_icons( 'site-footer__social' ); ?>

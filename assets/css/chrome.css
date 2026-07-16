@@ -45,10 +45,21 @@
 	transition: transform 0.2s ease;
 }
 
-.site-header__logo img {
+/* Text recreation of the JT icon (Averia Serif Libre 700, matched against
+   the original PNG) — crisp at any size, padding tunable, token-colored. */
+.site-header__logo-mark {
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	width: 40px;
 	height: 40px;
 	border-radius: 50%;
+	background: var(--color-charcoal);
+	color: var(--color-bg);
+	font-family: var(--font-display);
+	font-weight: 700;
+	font-size: 19px;
+	letter-spacing: 0.01em;
 }
 
 @media (hover: hover) {
@@ -182,9 +193,10 @@
 		padding: 9px 14px;
 	}
 
-	.site-header__logo img {
+	.site-header__logo-mark {
 		width: 36px;
 		height: 36px;
+		font-size: 17px;
 	}
 }
 
@@ -218,11 +230,28 @@
 
 .site-footer__logo {
 	line-height: 0;
+	text-decoration: none;
 }
 
-.site-footer__logo img {
-	width: 170px;
-	height: auto;
+/* Text recreation of the split-colors fullname lockup (Averia 700). */
+.site-footer__lockup {
+	display: inline-flex;
+	font-family: var(--font-display);
+	font-weight: 700;
+	font-size: 24px;
+	line-height: 1;
+}
+
+.site-footer__lockup-first {
+	background: var(--color-white);
+	color: var(--color-charcoal);
+	padding: 8px 10px;
+}
+
+.site-footer__lockup-last {
+	background: var(--color-accent);
+	color: var(--color-white);
+	padding: 8px 10px;
 }
 
 .site-footer__tagline {
