@@ -1,0 +1,1 @@
+Temporary marker to verify Hostinger auto-deployment fires on push to main. Removed by the follow-up cleanup PR.
