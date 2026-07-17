@@ -27,6 +27,10 @@ get_header();
 		<h3 class="section-title">More J Stuff</h3>
 		<div class="jt-toggles">
 			<details class="jt-toggle">
+				<summary>Why "J"?</summary>
+				<div class="jt-toggle__body"><p>My drive for efficiency, as mentioned above, extends to my own name: "Joefer" has more letters than I strictly need. "J" just gets the job done faster. Turns out that same philosophy carries into how I work, too: give me the essentials, and I'll skip the fluff.</p></div>
+			</details>
+			<details class="jt-toggle">
 				<summary>My Myers-Briggs Type Indicator (MBTI)</summary>
 				<div class="jt-toggle__body"><p>INFJ. No, wait, maybe INTJ? Though, if <a href="<?php echo esc_url( home_url( '/wp-content/uploads/2024/01/INFJ.png' ) ); ?>" target="_blank" rel="noopener">this report</a> were to be believed, I apparently embody <a href="https://www.16personalities.com/personality-types" target="_blank" rel="noopener">8 out of the 16 personalities</a>, hmm. Silver lining: having lived in half the personality spectrum probably makes it a little easier to read and work with a wider range of people.</p></div>
 			</details>
