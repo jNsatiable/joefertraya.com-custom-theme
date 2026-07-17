@@ -21,8 +21,10 @@ function jt_update_seo_titles_once() {
 	// chars) in the SEO meter; it now gets a custom title too — deliberately
 	// broad per Joefer (not skewed toward retouching/photography), echoing
 	// About's "multifaceted" vocabulary. 41 chars; 56 with the auto-suffix.
-	// All operations are idempotent, so the v3 flag simply re-runs the lot.
-	if ( get_option( 'jt_seo_titles_updated_v3' ) ) {
+	// v4: Blog category title updated to match the on-page "The J Files"
+	// rebrand (hybrid naming, 2026-07-17).
+	// All operations are idempotent, so the flag simply re-runs the lot.
+	if ( get_option( 'jt_seo_titles_updated_v4' ) ) {
 		return;
 	}
 
@@ -42,6 +44,19 @@ function jt_update_seo_titles_once() {
 		update_post_meta( 375, '_genesis_description', wp_slash( str_replace( 'hearbeat', 'heartbeat', $desc ) ) );
 	}
 
-	update_option( 'jt_seo_titles_updated_v3', gmdate( 'Y-m-d' ) );
+	// Blog category: the tab/search title still carried the old "J's Blog"
+	// branding after the on-page rebrand to "The J Files". Terms store TSF
+	// overrides in one meta array (not _genesis_title like posts) — merge so
+	// any other stored term settings survive. Name left to the auto-suffix,
+	// same as the page titles above. Looked up by slug, not a hardcoded ID.
+	$jt_blog_cat = get_category_by_slug( 'blog' );
+	if ( $jt_blog_cat ) {
+		$jt_tsf_meta = get_term_meta( $jt_blog_cat->term_id, 'autodescription-term-settings', true );
+		$jt_tsf_meta = is_array( $jt_tsf_meta ) ? $jt_tsf_meta : array();
+		$jt_tsf_meta['doctitle'] = 'The J Files — Blog';
+		update_term_meta( $jt_blog_cat->term_id, 'autodescription-term-settings', wp_slash( $jt_tsf_meta ) );
+	}
+
+	update_option( 'jt_seo_titles_updated_v4', gmdate( 'Y-m-d' ) );
 }
 add_action( 'init', 'jt_update_seo_titles_once' );
