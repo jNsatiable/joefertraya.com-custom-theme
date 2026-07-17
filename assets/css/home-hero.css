@@ -98,15 +98,30 @@
 	margin-top: 16px;
 }
 
+/* Text links with a resting affordance cue: a short accent underline
+   that sweeps to full width on hover (chosen over button styling —
+   "too basic and too loud" — 2026-07-17). The resting bar is what
+   signals "interactable" before any hover happens. */
 .home-hero__btn {
+	position: relative;
 	font-family: var(--font-secondary);
 	font-weight: 600;
 	font-size: 17px;
 	color: #fff;
 	text-decoration: none;
 	text-shadow: 1px 1px 0 var(--color-accent);
-	padding: 12px 0;
-	border-radius: 3px;
+	padding: 12px 0 6px;
+}
+
+.home-hero__btn::after {
+	content: "";
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	height: 2px;
+	width: 26px;
+	background: var(--color-accent);
+	transition: width 0.3s ease;
 }
 
 .home-hero__btn--accent {
@@ -114,8 +129,8 @@
 }
 
 @media (hover: hover) {
-	.home-hero__btn:hover {
-		color: #fff;
+	.home-hero__btn:hover::after {
+		width: 100%;
 	}
 }
 
