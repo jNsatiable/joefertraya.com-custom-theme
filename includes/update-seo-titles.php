@@ -23,8 +23,12 @@ function jt_update_seo_titles_once() {
 	// About's "multifaceted" vocabulary. 41 chars; 56 with the auto-suffix.
 	// v4: Blog category title updated to match the on-page "The J Files"
 	// rebrand (hybrid naming, 2026-07-17).
+	// v5: verified live that v4 rendered with no site-name suffix — the
+	// term's stored settings carried a "remove site title" toggle from the
+	// old title (which had "Joefer Traya" manually embedded), and the merge
+	// preserved it. Cleared so the auto-suffix applies like the other pages.
 	// All operations are idempotent, so the flag simply re-runs the lot.
-	if ( get_option( 'jt_seo_titles_updated_v4' ) ) {
+	if ( get_option( 'jt_seo_titles_updated_v5' ) ) {
 		return;
 	}
 
@@ -53,10 +57,11 @@ function jt_update_seo_titles_once() {
 	if ( $jt_blog_cat ) {
 		$jt_tsf_meta = get_term_meta( $jt_blog_cat->term_id, 'autodescription-term-settings', true );
 		$jt_tsf_meta = is_array( $jt_tsf_meta ) ? $jt_tsf_meta : array();
-		$jt_tsf_meta['doctitle'] = 'The J Files — Blog';
+		$jt_tsf_meta['doctitle']           = 'The J Files — Blog';
+		$jt_tsf_meta['title_no_blog_name'] = 0;
 		update_term_meta( $jt_blog_cat->term_id, 'autodescription-term-settings', wp_slash( $jt_tsf_meta ) );
 	}
 
-	update_option( 'jt_seo_titles_updated_v4', gmdate( 'Y-m-d' ) );
+	update_option( 'jt_seo_titles_updated_v5', gmdate( 'Y-m-d' ) );
 }
 add_action( 'init', 'jt_update_seo_titles_once' );
