@@ -44,29 +44,45 @@ function jt_disable_emojis_dns_prefetch( $urls, $relation_type ) {
 }
 
 /**
- * Dequeue Gutenberg's block-library / classic-theme-styles / global-styles
- * CSS (~8.8KB+ inlined into every <head>). Safe here: every template is
- * hand-coded PHP, and the one post that used to be Elementor-built was
- * migrated to plain HTML (includes/migrate-post-2411.php) — nothing on
- * this site renders core blocks. Revisit if a future page ever uses
- * the block editor.
- *
- * 'global-styles' needs a second, later removal call: dequeuing it on
- * wp_enqueue_scripts (even at priority 100) didn't stick — confirmed live,
- * the <style id="global-styles-inline-css"> block survived while
- * block-library/classic-theme-styles both dequeued cleanly from the same
- * hook. Something (core's wp_footer-priority-1 fallback path, or a plugin)
- * re-enqueues it after wp_enqueue_scripts finishes. Removing it again on
- * wp_head at priority 1 — which runs after wp_enqueue_scripts but before
- * wp_print_styles() prints the queue (typically priority 8) — closes that
- * gap regardless of which hook re-added it.
+ * Dequeue Gutenberg's block-library / classic-theme-styles CSS (~8KB
+ * inlined into every <head>). Safe here: every template is hand-coded
+ * PHP, and the one post that used to be Elementor-built was migrated to
+ * plain HTML (includes/migrate-post-2411.php) — nothing on this site
+ * renders core blocks. Revisit if a future page ever uses the block
+ * editor.
  */
 add_action( 'wp_enqueue_scripts', 'jt_dequeue_unused_block_styles', 100 );
-add_action( 'wp_head', 'jt_dequeue_unused_block_styles', 1 );
 
 function jt_dequeue_unused_block_styles() {
 	wp_dequeue_style( 'wp-block-library' );
 	wp_dequeue_style( 'wp-block-library-theme' );
 	wp_dequeue_style( 'classic-theme-styles' );
-	wp_dequeue_style( 'global-styles' );
+}
+
+/**
+ * 'global-styles' (the :root{--wp--preset--*} custom-properties block,
+ * ~1-3KB) resisted wp_dequeue_style() from two different hooks
+ * (wp_enqueue_scripts priority 100, wp_head priority 1) — confirmed live
+ * both attempts left <style id="global-styles-inline-css"> in place while
+ * block-library/classic-theme-styles both dequeued cleanly from the same
+ * first hook, so it's being re-enqueued after the dequeue window rather
+ * than skipping the dequeue mechanism entirely. Also can't reach it via
+ * style_loader_tag: that filter only covers a handle's own <link>/<style
+ * src> tag — WP_Styles::print_inline_style() builds the separate
+ * "{handle}-inline-css" block through its own, unfiltered code path.
+ *
+ * Buffering wp_head and stripping the one specific tag by id is the only
+ * mechanism that reaches it regardless of when/how it's (re-)added — it
+ * operates on the final output text, not the enqueue system.
+ */
+add_action( 'wp_head', 'jt_buffer_head_start', -9999 );
+add_action( 'wp_head', 'jt_buffer_head_end', 9999 );
+
+function jt_buffer_head_start() {
+	ob_start();
+}
+
+function jt_buffer_head_end() {
+	$head = ob_get_clean();
+	echo preg_replace( "#<style id=['\"]global-styles-inline-css['\"][^>]*>.*?</style>\s*#s", '', $head );
 }
