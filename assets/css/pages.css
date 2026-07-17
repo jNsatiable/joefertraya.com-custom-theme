@@ -71,14 +71,6 @@
 	margin-top: 48px;
 }
 
-/* Odd item count: center the last tile in its own full-width row
-   instead of leaving an orphan cell, or stretching it edge-to-edge. */
-.jt-toggles .jt-toggle:last-child {
-	grid-column: 1 / -1;
-	width: calc((100% - 32px) / 2);
-	margin-inline: auto;
-}
-
 .jt-toggle {
 	border-bottom: 0.5px solid var(--color-divider);
 	padding: 0 30px 30px 0;
@@ -375,11 +367,6 @@
 
 	.jt-toggles {
 		grid-template-columns: 1fr;
-	}
-
-	.jt-toggles .jt-toggle:last-child {
-		width: auto;
-		margin-inline: 0;
 	}
 }
 
