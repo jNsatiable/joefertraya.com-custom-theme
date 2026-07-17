@@ -7,10 +7,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'JT_THEME_VERSION', '0.9.16' );
+define( 'JT_THEME_VERSION', '0.9.17' );
 
 require_once get_template_directory() . '/includes/migrate-post-2411.php';
-require_once get_template_directory() . '/includes/disable-comments.php';
+require_once get_template_directory() . '/includes/comments.php';
 require_once get_template_directory() . '/includes/cleanup-orphan-content.php';
 require_once get_template_directory() . '/includes/update-seo-titles.php';
 require_once get_template_directory() . '/includes/performance.php';
@@ -20,7 +20,7 @@ require_once get_template_directory() . '/includes/seed-privacy-page.php';
 function jt_theme_setup() {
 	add_theme_support( 'title-tag' );
 	add_theme_support( 'post-thumbnails' );
-	add_theme_support( 'html5', array( 'search-form', 'gallery', 'caption', 'style', 'script' ) );
+	add_theme_support( 'html5', array( 'search-form', 'gallery', 'caption', 'style', 'script', 'comment-list', 'comment-form' ) );
 	add_theme_support( 'custom-logo' );
 
 	register_nav_menus(
