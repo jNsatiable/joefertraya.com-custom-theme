@@ -28,27 +28,31 @@ get_header();
 		<div class="jt-toggles">
 			<details class="jt-toggle">
 				<summary>My Myers-Briggs Type Indicator (MBTI)</summary>
-				<div class="jt-toggle__body"><p>INFJ. No, wait, maybe INTJ? Though, if <a href="<?php echo esc_url( home_url( '/wp-content/uploads/2024/01/INFJ.png' ) ); ?>" target="_blank" rel="noopener">this report</a> were to be believed, I apparently embody <a href="https://www.16personalities.com/personality-types" target="_blank" rel="noopener">8 out of the 16 personalities</a>, hmm.</p></div>
+				<div class="jt-toggle__body"><p>INFJ. No, wait, maybe INTJ? Though, if <a href="<?php echo esc_url( home_url( '/wp-content/uploads/2024/01/INFJ.png' ) ); ?>" target="_blank" rel="noopener">this report</a> were to be believed, I apparently embody <a href="https://www.16personalities.com/personality-types" target="_blank" rel="noopener">8 out of the 16 personalities</a>, hmm. Silver lining: having lived in half the personality spectrum probably makes it a little easier to read and work with a wider range of people.</p></div>
 			</details>
 			<details class="jt-toggle">
 				<summary>My Love Language</summary>
 				<div class="jt-toggle__body"><p><strong>Acts of Service</strong>. The quality of my work speaks for me (or at least I hope it does). More about the <a href="https://5lovelanguages.com/learn" target="_blank" rel="noopener">5 Love Languages</a> by Gary Chapman.</p></div>
 			</details>
 			<details class="jt-toggle">
-				<summary>"Can you perform [insert any skill / task]?"</summary>
-				<div class="jt-toggle__body"><p>Absolutely! I have full confidence in my ability to learn just about anything (except, maybe, rocket science XD). The feasibility depends on time constraints, really. How soon do you need the output?</p></div>
+				<summary>My Kryptonite</summary>
+				<div class="jt-toggle__body"><p>As someone who always has something good to say about other people, I struggle with giving out constructive criticism. Though if <a href="https://5lovelanguages.com/learn" target="_blank" rel="noopener">words of affirmation</a> fuel you better than tough love, that's a plus, no?</p></div>
 			</details>
 			<details class="jt-toggle">
 				<summary>My Super Power</summary>
 				<div class="jt-toggle__body"><p>Can read and spell words backward. Oh, and I seem to excel in bringing out the best in people, too&mdash;always on the lookout for improvement opportunities for the people around me.</p></div>
 			</details>
 			<details class="jt-toggle">
-				<summary>My Kryptonite</summary>
-				<div class="jt-toggle__body"><p>As someone who always has something good to say about other people, I struggle with giving out constructive criticism. Though if <a href="https://5lovelanguages.com/learn" target="_blank" rel="noopener">words of affirmation</a> fuel you better than tough love, that's a plus, no?</p></div>
+				<summary>"Can you perform [insert any skill / task]?"</summary>
+				<div class="jt-toggle__body"><p>Absolutely! I have full confidence in my ability to learn just about anything (except, maybe, rocket science XD). The feasibility depends on time constraints, really. How soon do you need the output?</p></div>
 			</details>
 			<details class="jt-toggle">
 				<summary>My Current interests</summary>
 				<div class="jt-toggle__body"><p>With my recently acquired data analytics skills, I am looking at breaking into the fields of digital sales and marketing, lead generation, social media management and the likes. Very interested in how consumer psychology works.</p></div>
+			</details>
+			<details class="jt-toggle">
+				<summary>Who I Work Best With</summary>
+				<div class="jt-toggle__body"><p>Give me the "why" behind a task, not just the "what": context beats guesswork every time. I do best with people who trust me to run with things instead of re-explaining every step, though I'll never hesitate to ask a clarifying question along the way. Patient, collaborative types get bonus points; see my Kryptonite above for why.</p></div>
 			</details>
 		</div>
 	</div>
