@@ -123,10 +123,6 @@
 	transition: width 0.3s ease;
 }
 
-.home-hero__btn--accent {
-	color: var(--color-accent);
-}
-
 @media (hover: hover) {
 	.home-hero__btn:hover::after {
 		width: 100%;
