@@ -25,6 +25,20 @@ body {
 }
 
 .site-main {
+	display: flex;
+	flex-direction: column;
+	flex: 1 0 auto;
+}
+
+/* .site-main growing to fill the viewport (above) only closes the gap
+   between content and footer at the <main> level -- its own last section
+   still stops at its natural height, leaving a page-bg-colored band
+   before the footer on tall viewports. Growing that last section too
+   lets it visually reach the footer (matters most where the two share a
+   surface, like the Home hero's charcoal running into the footer's), and
+   costs nothing on sections where it doesn't matter (the extra space is
+   just more of that section's own background, already page-bg-colored). */
+.site-main > *:last-child {
 	flex: 1 0 auto;
 }
 

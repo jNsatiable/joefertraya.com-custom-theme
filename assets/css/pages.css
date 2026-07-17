@@ -122,6 +122,13 @@
 .jt-cta {
 	background: var(--color-light-section);
 	text-align: center;
+	/* When this is the last section before the footer (About, Portfolio),
+	   it can grow to fill leftover viewport height (see .site-main > *:last-child
+	   in main.css) -- centering vertically keeps the title/button anchored
+	   in the middle of the band instead of clumping at the top. */
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 }
 
 .jt-cta__title {
