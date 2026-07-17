@@ -216,6 +216,8 @@
 }
 
 .portfolio-hero__title {
+	font-family: var(--font-display);
+	font-weight: var(--weight-display);
 	color: #fff;
 	font-size: 52px;
 }
@@ -262,6 +264,8 @@
 }
 
 .blog-hero .page-title {
+	font-family: var(--font-display);
+	font-weight: var(--weight-display);
 	color: var(--color-white);
 	margin-bottom: 18px;
 }
