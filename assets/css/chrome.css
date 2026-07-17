@@ -392,6 +392,17 @@ body.home .site-footer {
 	margin: 0;
 }
 
+.site-footer__privacy {
+	color: inherit;
+	text-decoration: none;
+}
+
+@media (hover: hover) {
+	.site-footer__privacy:hover {
+		color: var(--color-accent);
+	}
+}
+
 .site-footer__top {
 	display: flex;
 	align-items: center;

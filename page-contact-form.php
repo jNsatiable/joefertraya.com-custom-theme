@@ -20,10 +20,10 @@ $jt_error_messages = array(
 );
 ?>
 
-<section class="contact-hero">
+<section class="page-hero">
 	<div class="container">
 		<h1 class="page-title">Contact Me</h1>
-		<p class="contact-hero__intro">Got questions, a project, or simply want to say hello? Drop J a message and he'll get back to you in a heartbeat. For more urgent matters, here's a link to <a href="https://calendar.app.google/69rBvEiEAxNCw7NC6" target="_blank" rel="noopener">his Calendar</a>. Additionally, here's a link to his <a href="https://www.upwork.com/freelancers/~0142984b3c47f365d6" target="_blank" rel="noopener">Upwork profile</a> if you're there, too.</p>
+		<p class="page-hero__intro">Got questions, a project, or simply want to say hello? Drop J a message and he'll get back to you in a heartbeat. For more urgent matters, here's a link to <a href="https://calendar.app.google/69rBvEiEAxNCw7NC6" target="_blank" rel="noopener">his Calendar</a>. Additionally, here's a link to his <a href="https://www.upwork.com/freelancers/~0142984b3c47f365d6" target="_blank" rel="noopener">Upwork profile</a> if you're there, too.</p>
 	</div>
 </section>
 

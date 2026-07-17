@@ -254,27 +254,24 @@
 /* --- Blog --- */
 
 /* Charcoal hero band — same surface language as the About intro, tucked
-   behind the floating header. Blog carries the "The J Files" brand heading
-   (nav keeps "Blog" for recognition; hybrid naming, 2026-07-17); Contact
-   shares the identical band recipe. */
-.blog-hero,
-.contact-hero {
+   behind the floating header. Generalized once Blog, Contact, and Privacy
+   all shared the identical recipe. Blog's heading is the "The J Files"
+   brand name (nav keeps "Blog" for recognition; hybrid naming, 2026-07-17). */
+.page-hero {
 	background: var(--color-charcoal);
 	margin-top: calc(var(--header-pull) * -1);
 	padding-top: calc(60px + var(--header-pull));
 	padding-bottom: 56px;
 }
 
-.blog-hero .page-title,
-.contact-hero .page-title {
+.page-hero .page-title {
 	font-family: var(--font-display);
 	font-weight: var(--weight-display);
 	color: var(--color-white);
 	margin-bottom: 18px;
 }
 
-.blog-hero__intro,
-.contact-hero__intro {
+.page-hero__intro {
 	font-family: var(--font-display);
 	font-weight: 300;
 	font-size: 17px;
@@ -511,6 +508,24 @@
 
 .jt-notice--error {
 	background: var(--surface-notice-error);
+}
+
+/* --- Privacy policy --- */
+
+.privacy-content {
+	max-width: 820px;
+}
+
+.privacy-content__updated {
+	font-family: var(--font-secondary);
+	font-size: 13px;
+	opacity: 0.6;
+	margin: 0 0 8px;
+}
+
+.privacy-content h2 {
+	font-size: 22px;
+	margin: 1.6em 0 0.5em;
 }
 
 /* --- Responsive --- */

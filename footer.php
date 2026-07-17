@@ -34,7 +34,7 @@
 		</div>
 
 		<div class="site-footer__bottom">
-			<p class="site-footer__copyright">&copy; <?php echo esc_html( gmdate( 'Y' ) ); ?> JoeferTraya.com</p>
+			<p class="site-footer__copyright">&copy; <?php echo esc_html( gmdate( 'Y' ) ); ?> JoeferTraya.com &middot; <a class="site-footer__privacy" href="<?php echo esc_url( home_url( '/privacy-policy/' ) ); ?>">Privacy Policy</a></p>
 			<a class="site-footer__top" href="#top">
 				<?php esc_html_e( 'Back to top', 'joefertraya' ); ?>
 				<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M8 13l4-4 4 4"></path></svg>
