@@ -75,7 +75,7 @@
    instead of leaving an orphan cell, or stretching it edge-to-edge. */
 .jt-toggles .jt-toggle:last-child {
 	grid-column: 1 / -1;
-	max-width: calc((100% - 32px) / 2);
+	width: calc((100% - 32px) / 2);
 	margin-inline: auto;
 }
 
@@ -378,7 +378,7 @@
 	}
 
 	.jt-toggles .jt-toggle:last-child {
-		max-width: none;
+		width: auto;
 		margin-inline: 0;
 	}
 }
