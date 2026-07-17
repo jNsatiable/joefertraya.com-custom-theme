@@ -45,13 +45,24 @@ function jt_disable_emojis_dns_prefetch( $urls, $relation_type ) {
 
 /**
  * Dequeue Gutenberg's block-library / classic-theme-styles / global-styles
- * CSS (~8.8KB inlined into every <head>). Safe here: every template is
+ * CSS (~8.8KB+ inlined into every <head>). Safe here: every template is
  * hand-coded PHP, and the one post that used to be Elementor-built was
  * migrated to plain HTML (includes/migrate-post-2411.php) — nothing on
  * this site renders core blocks. Revisit if a future page ever uses
  * the block editor.
+ *
+ * 'global-styles' needs a second, later removal call: dequeuing it on
+ * wp_enqueue_scripts (even at priority 100) didn't stick — confirmed live,
+ * the <style id="global-styles-inline-css"> block survived while
+ * block-library/classic-theme-styles both dequeued cleanly from the same
+ * hook. Something (core's wp_footer-priority-1 fallback path, or a plugin)
+ * re-enqueues it after wp_enqueue_scripts finishes. Removing it again on
+ * wp_head at priority 1 — which runs after wp_enqueue_scripts but before
+ * wp_print_styles() prints the queue (typically priority 8) — closes that
+ * gap regardless of which hook re-added it.
  */
 add_action( 'wp_enqueue_scripts', 'jt_dequeue_unused_block_styles', 100 );
+add_action( 'wp_head', 'jt_dequeue_unused_block_styles', 1 );
 
 function jt_dequeue_unused_block_styles() {
 	wp_dequeue_style( 'wp-block-library' );
