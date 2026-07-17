@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * Joefer Traya theme setup and asset loading.
  */
@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'JT_THEME_VERSION', '0.9.0' );
+define( 'JT_THEME_VERSION', '0.9.1' );
 
 require_once get_template_directory() . '/includes/migrate-post-2411.php';
 require_once get_template_directory() . '/includes/disable-comments.php';
