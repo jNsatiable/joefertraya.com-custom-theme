@@ -1,0 +1,105 @@
+/*
+ * Self-hosted Google Fonts (Poppins, Raleway, Outfit, Averia Serif Libre).
+ * Latin subset only — every page on this site is English-only content.
+ *
+ * Replaces the fonts.googleapis.com <link> (Rentl pattern): self-hosting
+ * removes the extra cross-origin round trip entirely (DNS + TLS handshake
+ * to fonts.googleapis.com, then a second one to fonts.gstatic.com for the
+ * actual font files) — confirmed on Rentl via PageSpeed's render-blocking-
+ * requests breakdown to cost ~750ms, almost all latency, not payload size
+ * (the Google-served CSS itself was only ~1.8KB there too).
+ *
+ * Files fetched directly from Google's CDN with a woff2-capable user agent,
+ * verified as valid woff2 (magic bytes) before committing. Averia Serif
+ * Libre 500 is deliberately absent: it doesn't exist as a real weight on
+ * Google Fonts (confirmed empty response for that combination) — the site
+ * was already silently falling back to a synthesized weight for it.
+ */
+
+@font-face {
+	font-family: 'Poppins';
+	font-style: normal;
+	font-weight: 300;
+	font-display: swap;
+	src: url('../fonts/poppins-300-latin.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: 'Poppins';
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+	src: url('../fonts/poppins-400-latin.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: 'Poppins';
+	font-style: normal;
+	font-weight: 500;
+	font-display: swap;
+	src: url('../fonts/poppins-500-latin.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: 'Poppins';
+	font-style: normal;
+	font-weight: 600;
+	font-display: swap;
+	src: url('../fonts/poppins-600-latin.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: 'Raleway';
+	font-style: normal;
+	font-weight: 300;
+	font-display: swap;
+	src: url('../fonts/raleway-300-latin.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: 'Raleway';
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+	src: url('../fonts/raleway-400-latin.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: 'Raleway';
+	font-style: normal;
+	font-weight: 600;
+	font-display: swap;
+	src: url('../fonts/raleway-600-latin.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: 'Outfit';
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+	src: url('../fonts/outfit-400-latin.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: 'Outfit';
+	font-style: normal;
+	font-weight: 500;
+	font-display: swap;
+	src: url('../fonts/outfit-500-latin.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: 'Averia Serif Libre';
+	font-style: normal;
+	font-weight: 300;
+	font-display: swap;
+	src: url('../fonts/averia-serif-libre-300-latin.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: 'Averia Serif Libre';
+	font-style: normal;
+	font-weight: 700;
+	font-display: swap;
+	src: url('../fonts/averia-serif-libre-700-latin.woff2') format('woff2');
+}
