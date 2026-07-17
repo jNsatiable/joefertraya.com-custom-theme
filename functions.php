@@ -7,13 +7,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'JT_THEME_VERSION', '0.9.14' );
+define( 'JT_THEME_VERSION', '0.9.15' );
 
 require_once get_template_directory() . '/includes/migrate-post-2411.php';
 require_once get_template_directory() . '/includes/disable-comments.php';
 require_once get_template_directory() . '/includes/cleanup-orphan-content.php';
 require_once get_template_directory() . '/includes/update-seo-titles.php';
 require_once get_template_directory() . '/includes/performance.php';
+require_once get_template_directory() . '/includes/contact-form.php';
 
 function jt_theme_setup() {
 	add_theme_support( 'title-tag' );
