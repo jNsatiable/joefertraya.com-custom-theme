@@ -251,6 +251,31 @@
 
 /* --- Blog --- */
 
+/* Charcoal hero band — same surface language as the About intro, tucked
+   behind the floating header. Carries the "The J Files" brand heading
+   (nav keeps "Blog" for recognition; hybrid naming, 2026-07-17). */
+.blog-hero {
+	background: var(--color-charcoal);
+	margin-top: calc(var(--header-pull) * -1);
+	padding-top: calc(60px + var(--header-pull));
+	padding-bottom: 56px;
+}
+
+.blog-hero .page-title {
+	color: var(--color-white);
+	margin-bottom: 18px;
+}
+
+.blog-hero__intro {
+	font-family: var(--font-display);
+	font-weight: 300;
+	font-size: 17px;
+	line-height: 1.6;
+	color: var(--color-white);
+	max-width: 720px;
+	margin: 0;
+}
+
 .blog-archive__grid {
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
