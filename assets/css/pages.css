@@ -71,10 +71,12 @@
 	margin-top: 48px;
 }
 
-/* Odd item count: let the last tile span both columns instead of
-   leaving an orphan cell in the second column. */
+/* Odd item count: center the last tile in its own full-width row
+   instead of leaving an orphan cell, or stretching it edge-to-edge. */
 .jt-toggles .jt-toggle:last-child {
 	grid-column: 1 / -1;
+	max-width: calc((100% - 32px) / 2);
+	margin-inline: auto;
 }
 
 .jt-toggle {
@@ -373,6 +375,11 @@
 
 	.jt-toggles {
 		grid-template-columns: 1fr;
+	}
+
+	.jt-toggles .jt-toggle:last-child {
+		max-width: none;
+		margin-inline: 0;
 	}
 }
 
