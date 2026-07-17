@@ -254,23 +254,27 @@
 /* --- Blog --- */
 
 /* Charcoal hero band — same surface language as the About intro, tucked
-   behind the floating header. Carries the "The J Files" brand heading
-   (nav keeps "Blog" for recognition; hybrid naming, 2026-07-17). */
-.blog-hero {
+   behind the floating header. Blog carries the "The J Files" brand heading
+   (nav keeps "Blog" for recognition; hybrid naming, 2026-07-17); Contact
+   shares the identical band recipe. */
+.blog-hero,
+.contact-hero {
 	background: var(--color-charcoal);
 	margin-top: calc(var(--header-pull) * -1);
 	padding-top: calc(60px + var(--header-pull));
 	padding-bottom: 56px;
 }
 
-.blog-hero .page-title {
+.blog-hero .page-title,
+.contact-hero .page-title {
 	font-family: var(--font-display);
 	font-weight: var(--weight-display);
 	color: var(--color-white);
 	margin-bottom: 18px;
 }
 
-.blog-hero__intro {
+.blog-hero__intro,
+.contact-hero__intro {
 	font-family: var(--font-display);
 	font-weight: 300;
 	font-size: 17px;
@@ -406,11 +410,119 @@
 	width: 100%;
 }
 
+/* --- Contact form --- */
+
+.jt-form {
+	max-width: 760px;
+}
+
+.jt-form__grid {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 18px;
+}
+
+.jt-form__field {
+	margin: 0 0 18px;
+}
+
+.jt-form__field label {
+	display: block;
+	font-family: var(--font-heading);
+	font-weight: 600;
+	font-size: 12px;
+	letter-spacing: 0.02em;
+	margin-bottom: 6px;
+}
+
+.jt-form__req {
+	color: var(--color-accent);
+}
+
+.jt-form__opt {
+	font-weight: 400;
+	opacity: 0.6;
+}
+
+.jt-form__field input,
+.jt-form__field select,
+.jt-form__field textarea {
+	width: 100%;
+	box-sizing: border-box;
+	font-family: var(--font-body);
+	/* 16px floor: iOS Safari auto-zooms the page on focus below that. */
+	font-size: 16px;
+	color: var(--color-text);
+	background: var(--surface-card);
+	border: 1px solid var(--color-border-strong);
+	border-radius: 8px;
+	padding: 11px 14px;
+}
+
+.jt-form__field textarea {
+	resize: vertical;
+}
+
+.jt-form__field input:focus,
+.jt-form__field select:focus,
+.jt-form__field textarea:focus {
+	outline: none;
+	border-color: var(--color-accent);
+	box-shadow: 0 0 0 3px var(--focus-ring);
+}
+
+.jt-form__hint {
+	display: block;
+	font-size: 12px;
+	opacity: 0.65;
+	margin-top: 6px;
+}
+
+/* Honeypot — parked offscreen, not display:none (some bots skip hidden inputs). */
+.jt-form__hp {
+	position: absolute;
+	left: -9999px;
+}
+
+.jt-form .cf-turnstile {
+	margin: 0 0 18px;
+}
+
+.jt-form__submit {
+	border: 0;
+	cursor: pointer;
+}
+
+.jt-form__note {
+	font-size: 13px;
+	opacity: 0.65;
+	margin-top: 12px;
+}
+
+.jt-notice {
+	background: var(--color-mint);
+	color: var(--color-charcoal);
+	font-size: 15px;
+	padding: 16px 20px;
+	border-radius: 8px;
+	margin-bottom: 24px;
+	max-width: 760px;
+}
+
+.jt-notice--error {
+	background: var(--surface-notice-error);
+}
+
 /* --- Responsive --- */
 
 @media (max-width: 900px) {
 	.about-intro__grid {
 		grid-template-columns: 1fr;
+	}
+
+	.jt-form__grid {
+		grid-template-columns: 1fr;
+		gap: 0;
 	}
 
 	.jt-toggles {
