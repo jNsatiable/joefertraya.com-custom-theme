@@ -10,7 +10,7 @@ get_header();
 	<div class="container about-intro__grid">
 		<div class="about-intro__text">
 			<h1 class="page-title">About Me</h1>
-			<p>Hello! I'm <strong>Joefer Traya</strong>. My drive for efficiency compels me to ask that you just call me J. A registered nurse who got bit by the coding bug later than most, I ventured into the scary but exhilarating world of virtual freelancing.</p>
+			<p>Hello! I'm <strong>Joefer</strong>. My drive for efficiency compels me to ask that you just call me J. A registered nurse who got bit by the coding bug later than most, I ventured into the scary but exhilarating world of virtual freelancing.</p>
 			<p>Since then, I have collaborated with amazing individuals and businesses, consistently fueling my natural passion for learning and self-improvement. From administrative assistance to tech support, data entry to data analytics, web development to automations, and photo editing to AI prompting &mdash; I thoroughly enjoy each role &#x1F609;</p>
 			<p>I recognize that business success hinges on more than just technical expertise&mdash;interpersonal connections matter most. That is why it's crucial to know each other before initiating any work. If you believe we'd work well together, scroll down further to know more about my quirks! I'm a shameless firecracker of dad jokes&mdash;consider yourself warned!</p>
 			<p>Directly below is my resume, too, if you prefer that &#x1F642;</p>
