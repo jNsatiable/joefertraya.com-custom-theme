@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'JT_THEME_VERSION', '0.7.3' );
+define( 'JT_THEME_VERSION', '0.8.0' );
 
 require_once get_template_directory() . '/includes/migrate-post-2411.php';
 require_once get_template_directory() . '/includes/disable-comments.php';
@@ -31,12 +31,13 @@ function jt_theme_setup() {
 add_action( 'after_setup_theme', 'jt_theme_setup' );
 
 function jt_enqueue_assets() {
-	// Google Fonts: the four families from the design tokens. Weights expand as pages need them.
+	// Self-hosted (see assets/css/fonts.css docblock) — no external
+	// fonts.googleapis.com/fonts.gstatic.com round trips.
 	wp_enqueue_style(
 		'jt-fonts',
-		'https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Raleway:wght@300;400;600&family=Outfit:wght@400;500&family=Averia+Serif+Libre:wght@300;500;700&display=swap',
+		get_template_directory_uri() . '/assets/css/fonts.css',
 		array(),
-		null
+		JT_THEME_VERSION
 	);
 
 	wp_enqueue_style(
