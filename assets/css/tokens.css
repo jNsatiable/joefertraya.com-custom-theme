@@ -18,7 +18,7 @@
 	--color-accent: #FB923C;  /* brand orange (links, CTAs) — same in both modes */
 	--color-mint: #BBF7D0;    /* kit extra — mint green highlight */
 	--color-charcoal: #403F43; /* brand dark surface (hero/footer bands) — same in both modes */
-	--color-light-section: #F3F5F8; /* CTA band bg */
+	--color-light-section: #E2E8F0; /* CTA band bg */
 	--color-white: #FFFFFF;   /* pure white — logo lockup block, text on accent — same in both modes */
 	--color-divider: #D8D8D8; /* hairline dividers */
 	--footer-seam: rgba(255, 255, 255, 0.18); /* hairline where charcoal surfaces meet (Home hero → footer) — mode-invariant */
@@ -57,7 +57,7 @@
 		--surface-footer: #1F1E21;
 		--color-bg: #29282B;
 		--color-text: #E7E6E9;
-		--color-light-section: #343337;
+		--color-light-section: #403E44;
 		--color-divider: rgba(255, 255, 255, 0.14);
 		--surface-card: #37363A;
 		--surface-bar: rgba(41, 40, 43, 0.85);
@@ -75,7 +75,7 @@
 	--surface-footer: #1F1E21;
 	--color-bg: #29282B;
 	--color-text: #E7E6E9;
-	--color-light-section: #343337;
+	--color-light-section: #403E44;
 	--color-divider: rgba(255, 255, 255, 0.14);
 	--surface-card: #37363A;
 	--surface-bar: rgba(41, 40, 43, 0.85);
@@ -92,7 +92,7 @@
 	--surface-footer: #403F43;
 	--color-bg: #FBFEFB;
 	--color-text: #403F43;
-	--color-light-section: #F3F5F8;
+	--color-light-section: #E2E8F0;
 	--color-divider: #D8D8D8;
 	--surface-card: #FFFFFF;
 	--surface-bar: #FFFFFF;
