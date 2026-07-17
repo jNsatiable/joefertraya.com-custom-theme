@@ -38,7 +38,7 @@ $jt_skills = array(
 		<p class="home-hero__tagline">Empowering businesses with exceptional creativity and high technicality &mdash; wearing multiple hats at a time.</p>
 		<div class="home-hero__actions">
 			<a class="home-hero__btn" href="<?php echo esc_url( home_url( '/about/' ) ); ?>">About Me</a>
-			<a class="home-hero__btn home-hero__btn--accent" href="<?php echo esc_url( home_url( '/portfolio/' ) ); ?>">My Work</a>
+			<a class="home-hero__btn" href="<?php echo esc_url( home_url( '/portfolio/' ) ); ?>">My Work</a>
 		</div>
 	</div>
 	</div>
