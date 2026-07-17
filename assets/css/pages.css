@@ -177,9 +177,12 @@
 }
 
 /* "Pyramids" shape dividers — the original Elementor hero's diagonal edge
-   cuts (exact SVG path from the plugin, 22px per the original). Filled with
-   the page bg token so the cuts match in both light and dark mode. */
-.portfolio-hero__divider {
+   cuts (exact SVG path from the plugin, 22px per the original). Reused at
+   every Portfolio section boundary, each filled with the color of the
+   section it visually cuts into, so the break is visible against that
+   section's own background rather than just the hero's. Token-based fills
+   keep this correct in both light and dark mode without extra rules. */
+.jt-divider {
 	position: absolute;
 	left: 0;
 	width: 100%;
@@ -188,17 +191,21 @@
 	z-index: 1;
 }
 
-.portfolio-hero__divider path {
-	fill: var(--color-bg);
-}
-
-.portfolio-hero__divider--top {
+.jt-divider--top {
 	top: -1px;
 }
 
-.portfolio-hero__divider--bottom {
+.jt-divider--bottom {
 	bottom: -1px;
 	transform: rotate(180deg);
+}
+
+.jt-divider--fill-bg path {
+	fill: var(--color-bg);
+}
+
+.jt-divider--fill-light path {
+	fill: var(--color-light-section);
 }
 
 .portfolio-hero__title {
@@ -212,7 +219,12 @@
 }
 
 .gallery-section {
+	position: relative;
 	text-align: center;
+}
+
+.gallery-section--tint {
+	background: var(--color-light-section);
 }
 
 .gallery-section__hint {
