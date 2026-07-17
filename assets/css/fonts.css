@@ -14,6 +14,17 @@
  * Libre 500 is deliberately absent: it doesn't exist as a real weight on
  * Google Fonts (confirmed empty response for that combination) — the site
  * was already silently falling back to a synthesized weight for it.
+ *
+ * Raleway 300/400/600 and Outfit 400/500 were each downloaded as three (or
+ * two) separate weight-specific files but are byte-for-byte identical
+ * (verified via sha256sum) — Google's own build never actually
+ * differentiated those weights for this family. Each is now a single
+ * @font-face with a font-weight RANGE (e.g. "300 600") instead of one
+ * declaration per weight, so the browser fetches the file once instead of
+ * multiple times for what was already the same bytes. Confirmed live: this
+ * measurably reduced the Home page's font payload (was double-downloading
+ * Raleway 400 + 600, ~48KB each, for identical content) with zero visual
+ * change, since the rendering was already identical across those weights.
  */
 
 @font-face {
@@ -51,41 +62,17 @@
 @font-face {
 	font-family: 'Raleway';
 	font-style: normal;
-	font-weight: 300;
-	font-display: swap;
-	src: url('../fonts/raleway-300-latin.woff2') format('woff2');
-}
-
-@font-face {
-	font-family: 'Raleway';
-	font-style: normal;
-	font-weight: 400;
+	font-weight: 300 600;
 	font-display: swap;
 	src: url('../fonts/raleway-400-latin.woff2') format('woff2');
 }
 
 @font-face {
-	font-family: 'Raleway';
-	font-style: normal;
-	font-weight: 600;
-	font-display: swap;
-	src: url('../fonts/raleway-600-latin.woff2') format('woff2');
-}
-
-@font-face {
 	font-family: 'Outfit';
 	font-style: normal;
-	font-weight: 400;
+	font-weight: 400 500;
 	font-display: swap;
 	src: url('../fonts/outfit-400-latin.woff2') format('woff2');
-}
-
-@font-face {
-	font-family: 'Outfit';
-	font-style: normal;
-	font-weight: 500;
-	font-display: swap;
-	src: url('../fonts/outfit-500-latin.woff2') format('woff2');
 }
 
 @font-face {
