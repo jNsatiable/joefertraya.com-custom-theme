@@ -18,6 +18,7 @@ get_header();
 				echo '<h1 class="page-title">' . esc_html( get_the_title() ) . '</h1>';
 			}
 			the_content();
+			comments_template();
 		}
 		?>
 	</div>

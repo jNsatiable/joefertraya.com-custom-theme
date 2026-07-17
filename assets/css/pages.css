@@ -481,7 +481,8 @@
 	left: -9999px;
 }
 
-.jt-form .cf-turnstile {
+.jt-form .cf-turnstile,
+.comment-form .cf-turnstile {
 	margin: 0 0 18px;
 }
 
@@ -510,6 +511,101 @@
 	background: var(--surface-notice-error);
 }
 
+/* --- Post comments --- */
+
+.post-comments {
+	margin-top: 56px;
+	border-top: 0.5px solid var(--color-divider);
+	padding-top: 40px;
+}
+
+.post-comments__title,
+.post-comments__form-title {
+	font-size: 26px;
+	margin-bottom: 20px;
+}
+
+.post-comments__note {
+	font-size: 13px;
+	opacity: 0.65;
+	margin: 0 0 20px;
+}
+
+.comment-list {
+	list-style: none;
+	margin: 0 0 44px;
+	padding: 0;
+}
+
+.comment-list .children {
+	list-style: none;
+	margin: 20px 0 0;
+	padding-left: 24px;
+	border-left: 2px solid var(--color-divider);
+}
+
+.comment-list .comment {
+	margin-bottom: 28px;
+}
+
+.comment-list .comment-body > p:last-of-type {
+	margin-bottom: 0;
+}
+
+.comment-author .fn {
+	font-family: var(--font-heading);
+	font-weight: 600;
+	font-size: 15px;
+	font-style: normal;
+}
+
+.comment-metadata {
+	font-family: var(--font-secondary);
+	font-size: 12px;
+	opacity: 0.6;
+	margin-bottom: 8px;
+}
+
+.comment-metadata a {
+	color: inherit;
+	text-decoration: none;
+}
+
+.comment-content {
+	font-size: 15px;
+	line-height: 1.6;
+}
+
+.comment-awaiting-moderation {
+	display: block;
+	font-style: italic;
+	opacity: 0.65;
+	font-size: 13px;
+}
+
+.comment-reply-link {
+	font-family: var(--font-secondary);
+	font-size: 13px;
+	font-weight: 600;
+}
+
+/* Form: name/email side by side, everything else full width — same field
+   look as the contact form via the shared .jt-form__field class. */
+.comment-form {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 0 18px;
+}
+
+.comment-form > * {
+	grid-column: 1 / -1;
+}
+
+.comment-form .comment-form-author,
+.comment-form .comment-form-email {
+	grid-column: auto;
+}
+
 /* --- Privacy policy --- */
 
 .privacy-content {
@@ -536,6 +632,11 @@
 	}
 
 	.jt-form__grid {
+		grid-template-columns: 1fr;
+		gap: 0;
+	}
+
+	.comment-form {
 		grid-template-columns: 1fr;
 		gap: 0;
 	}

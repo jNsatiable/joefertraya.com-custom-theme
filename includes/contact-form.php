@@ -142,12 +142,13 @@ function jt_register_submission_cpt() {
 add_action( 'init', 'jt_register_submission_cpt' );
 
 /* ==========================================================================
-   3. Turnstile widget script — contact page only, and only once a site key
-      is configured. External script, so no JT_THEME_VERSION query arg.
+   3. Turnstile widget script — contact page + single posts (comment form),
+      and only once a site key is configured. External script, so no
+      JT_THEME_VERSION query arg.
    ========================================================================== */
 
 function jt_contact_scripts() {
-	if ( ! is_page( 'contact-form' ) || ! get_option( 'jt_turnstile_site_key' ) ) {
+	if ( ( ! is_page( 'contact-form' ) && ! is_singular( 'post' ) ) || ! get_option( 'jt_turnstile_site_key' ) ) {
 		return;
 	}
 	wp_enqueue_script(
