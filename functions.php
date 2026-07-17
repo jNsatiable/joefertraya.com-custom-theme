@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'JT_THEME_VERSION', '0.8.1' );
+define( 'JT_THEME_VERSION', '0.9.0' );
 
 require_once get_template_directory() . '/includes/migrate-post-2411.php';
 require_once get_template_directory() . '/includes/disable-comments.php';
@@ -31,36 +31,6 @@ function jt_theme_setup() {
 add_action( 'after_setup_theme', 'jt_theme_setup' );
 
 function jt_enqueue_assets() {
-	// Self-hosted (see assets/css/fonts.css docblock) — no external
-	// fonts.googleapis.com/fonts.gstatic.com round trips.
-	wp_enqueue_style(
-		'jt-fonts',
-		get_template_directory_uri() . '/assets/css/fonts.css',
-		array(),
-		JT_THEME_VERSION
-	);
-
-	wp_enqueue_style(
-		'jt-tokens',
-		get_template_directory_uri() . '/assets/css/tokens.css',
-		array(),
-		JT_THEME_VERSION
-	);
-
-	wp_enqueue_style(
-		'jt-main',
-		get_template_directory_uri() . '/assets/css/main.css',
-		array( 'jt-tokens' ),
-		JT_THEME_VERSION
-	);
-
-	wp_enqueue_style(
-		'jt-chrome',
-		get_template_directory_uri() . '/assets/css/chrome.css',
-		array( 'jt-tokens' ),
-		JT_THEME_VERSION
-	);
-
 	// Same rule as jt-home-hero: never wp_add_inline_script() onto this
 	// handle, or the defer strategy silently drops.
 	wp_enqueue_script(
@@ -75,13 +45,6 @@ function jt_enqueue_assets() {
 	);
 
 	if ( is_front_page() ) {
-		wp_enqueue_style(
-			'jt-home-hero',
-			get_template_directory_uri() . '/assets/css/home-hero.css',
-			array( 'jt-tokens' ),
-			JT_THEME_VERSION
-		);
-
 		// No wp_add_inline_script() on this handle — an 'after' inline script
 		// silently cancels the defer strategy (WP core refuses to combine them).
 		wp_enqueue_script(
@@ -94,16 +57,52 @@ function jt_enqueue_assets() {
 				'in_footer' => true,
 			)
 		);
-	} else {
-		wp_enqueue_style(
-			'jt-pages',
-			get_template_directory_uri() . '/assets/css/pages.css',
-			array( 'jt-tokens' ),
-			JT_THEME_VERSION
-		);
 	}
 }
 add_action( 'wp_enqueue_scripts', 'jt_enqueue_assets' );
+
+/**
+ * Inline the base + page-specific CSS instead of enqueuing as separate
+ * <link> requests. PageSpeed measured these as render-blocking requests
+ * costing ~430ms on mobile despite each file being under 2.5KB — the
+ * bottleneck was round-trip latency per request, not payload size, so
+ * Lighthouse's own fix ("deferring or inlining") means eliminating the
+ * requests entirely rather than shrinking them further.
+ *
+ * Font FILES (assets/fonts/*.woff2) stay as separate, cacheable, binary
+ * requests — only the small @font-face-declaring stylesheet is inlined
+ * alongside the rest. Its `url('../fonts/...')` references are relative
+ * to the CSS FILE's own location and would resolve wrong once moved into
+ * the HTML document (relative to the page URL instead) — rewritten to
+ * absolute template-dir URLs before printing.
+ *
+ * JT_THEME_VERSION cache-busting no longer applies to these files (an
+ * inlined block has no URL to append ?ver= to, and always reflects
+ * current file content on every server render) — it still matters for
+ * the two enqueued JS files above. Note: a full-page HTTP cache (e.g.
+ * WP-Optimize) could still serve stale inlined CSS until its own cache
+ * entry is purged/expires, same as it would for any other markup change.
+ */
+add_action( 'wp_head', 'jt_inline_styles', 5 );
+
+function jt_inline_styles() {
+	$base = array( 'tokens.css', 'fonts.css', 'main.css', 'chrome.css' );
+	$page = is_front_page() ? 'home-hero.css' : 'pages.css';
+
+	echo '<style id="jt-inline-css">';
+	foreach ( array_merge( $base, array( $page ) ) as $file ) {
+		$path = get_template_directory() . '/assets/css/' . $file;
+		if ( ! file_exists( $path ) ) {
+			continue;
+		}
+		$css = file_get_contents( $path );
+		if ( 'fonts.css' === $file ) {
+			$css = str_replace( "url('../fonts/", "url('" . esc_url( get_template_directory_uri() ) . '/assets/fonts/', $css );
+		}
+		echo $css . "\n";
+	}
+	echo '</style>' . "\n";
+}
 
 /**
  * Set data-theme in <head> before any CSS renders — prevents a flash of the
