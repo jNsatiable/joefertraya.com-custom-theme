@@ -6,6 +6,11 @@
 	box-sizing: border-box;
 }
 
+/* Sticky footer: header/main/footer are the only direct body children
+   (skip-link is position:absolute, out of flow), so stacking them in a
+   full-viewport-height flex column and letting main absorb the leftover
+   space keeps the footer pinned to the bottom on short pages (e.g. Blog
+   with a single post) without affecting normal, taller pages at all. */
 body {
 	margin: 0;
 	background: var(--color-bg);
@@ -14,6 +19,13 @@ body {
 	font-weight: var(--weight-body);
 	line-height: 1.6;
 	-webkit-font-smoothing: antialiased;
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
+
+.site-main {
+	flex: 1 0 auto;
 }
 
 h1,
