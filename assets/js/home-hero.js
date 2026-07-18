@@ -10,8 +10,10 @@
  * nearby front-layer points also draw a live line to the cursor, joining
  * it as a node in the network. A click adds a stronger, one-shot outward
  * burst on top of that (front layer only, same as hover) that decays over
- * ~700ms rather than lingering. Same zero-dependency Canvas 2D approach as
- * before, no library weight added.
+ * ~700ms rather than lingering. Spans the full section (previously
+ * confined to a circular field on the right side) — point counts bumped
+ * to keep density from thinning out over the larger area. Same
+ * zero-dependency Canvas 2D approach as before, no library weight added.
  */
 (function () {
 	'use strict';
@@ -31,9 +33,9 @@
 	var WHITE = 'rgba(255, 255, 255, ';
 
 	var DEPTH_LAYERS = [
-		{ count: 30, radius: 1.4, alphaWhite: 0.30, alphaAccent: 0.45, connectDist: 0.20, interactive: false },
-		{ count: 25, radius: 2.2, alphaWhite: 0.55, alphaAccent: 0.70, connectDist: 0.24, interactive: false },
-		{ count: 15, radius: 3.2, alphaWhite: 0.80, alphaAccent: 0.90, connectDist: 0.28, interactive: true }
+		{ count: 50, radius: 1.4, alphaWhite: 0.30, alphaAccent: 0.45, connectDist: 0.14, interactive: false },
+		{ count: 40, radius: 2.2, alphaWhite: 0.55, alphaAccent: 0.70, connectDist: 0.17, interactive: false },
+		{ count: 22, radius: 3.2, alphaWhite: 0.80, alphaAccent: 0.90, connectDist: 0.20, interactive: true }
 	];
 	var points = [];
 	DEPTH_LAYERS.forEach(function (cfg, layerIndex) {
@@ -108,9 +110,6 @@
 		var h = canvas.height;
 		ctx.clearRect(0, 0, w, h);
 
-		var cx = w * 0.72;
-		var cy = h * 0.52;
-		var fieldRadius = Math.min(w, h) * 0.44;
 		var REPEL_RADIUS = Math.min(w, h) * 0.16;
 		var MAX_PUSH = Math.min(w, h) * 0.045;
 		var MOUSE_CONNECT_RADIUS = Math.min(w, h) * 0.24;
@@ -126,7 +125,14 @@
 			if (p.y > 1 || p.y < -1) { p.vy *= -1; }
 		}
 
-		var proj = points.map(function (p) { return [cx + p.x * fieldRadius, cy + p.y * fieldRadius]; });
+		/* Full-section coverage: normalized [-1,1] maps straight to [0,w]
+		   and [0,h] independently, so on a wide hero the x-axis is scaled
+		   more than y. That means edge/interaction distance checks CANNOT
+		   use the raw normalized point-space coordinates any more (a
+		   uniform-scale assumption that held for the old circular field,
+		   confined at 0.72w with a single fieldRadius) — everything below
+		   measures distance on the PROJECTED pixel positions instead. */
+		var proj = points.map(function (p) { return [(p.x * 0.5 + 0.5) * w, (p.y * 0.5 + 0.5) * h]; });
 
 		var clickElapsed = performance.now() - click.time;
 		var clickTimeFactor = clickElapsed < CLICK_DURATION ? Math.pow(1 - clickElapsed / CLICK_DURATION, 2) : 0;
@@ -167,17 +173,23 @@
 		});
 
 		/* Edges only ever connect two points in the SAME layer — a line
-		   spanning depths would visually flatten the illusion. */
+		   spanning depths would visually flatten the illusion. connectDist
+		   is a pixel radius (Math.min(w,h) * fraction), same convention as
+		   REPEL_RADIUS/CLICK_RADIUS, measured on each point's own resting
+		   projected position (proj), not its mouse/click-displaced one —
+		   the mesh topology doesn't change just because a point is
+		   currently being pushed around. */
 		ctx.lineWidth = 1;
 		for (var a = 0; a < POINTS; a++) {
 			for (var b = a + 1; b < POINTS; b++) {
 				if (points[a].layer !== points[b].layer) { continue; }
 				var cfg = DEPTH_LAYERS[points[a].layer];
-				var dx = points[a].x - points[b].x;
-				var dy = points[a].y - points[b].y;
+				var connectDistPx = Math.min(w, h) * cfg.connectDist;
+				var dx = proj[a][0] - proj[b][0];
+				var dy = proj[a][1] - proj[b][1];
 				var dist = Math.sqrt(dx * dx + dy * dy);
-				if (dist < cfg.connectDist) {
-					var alpha = (1 - dist / cfg.connectDist) * cfg.alphaWhite * 0.7;
+				if (dist < connectDistPx) {
+					var alpha = (1 - dist / connectDistPx) * cfg.alphaWhite * 0.7;
 					ctx.strokeStyle = WHITE + alpha.toFixed(3) + ')';
 					ctx.beginPath();
 					ctx.moveTo(displayed[a][0], displayed[a][1]);
