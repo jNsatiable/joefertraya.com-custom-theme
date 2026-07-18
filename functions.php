@@ -10,6 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 define( 'JT_THEME_VERSION', '0.9.17' );
 
 require_once get_template_directory() . '/includes/migrate-post-2411.php';
+require_once get_template_directory() . '/includes/smtp-mail.php';
 require_once get_template_directory() . '/includes/comments.php';
 require_once get_template_directory() . '/includes/cleanup-orphan-content.php';
 require_once get_template_directory() . '/includes/update-seo-titles.php';
