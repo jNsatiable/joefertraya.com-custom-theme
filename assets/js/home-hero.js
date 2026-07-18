@@ -8,7 +8,9 @@
  * never spans two depths and flattens the illusion. Only the front layer
  * reacts to the mouse — points within a radius get pushed away, and
  * nearby front-layer points also draw a live line to the cursor, joining
- * it as a node in the network. Same zero-dependency Canvas 2D approach as
+ * it as a node in the network. A click adds a stronger, one-shot outward
+ * burst on top of that (front layer only, same as hover) that decays over
+ * ~700ms rather than lingering. Same zero-dependency Canvas 2D approach as
  * before, no library weight added.
  */
 (function () {
@@ -67,6 +69,23 @@
 		window.addEventListener('mouseleave', function () { mouse.active = false; });
 	}
 
+	/* Click burst — a one-shot, decaying outward push, layered on top of
+	   the continuous hover repulsion. Stateless like the hover push: each
+	   frame recomputes the burst purely from how long ago the click was
+	   and how far the point currently is, so nothing needs to be manually
+	   reset or unwound once it fades. Front layer only, same as hover. */
+	var click = { x: 0, y: 0, time: -Infinity };
+	if (!reducedMotion) {
+		window.addEventListener('click', function (e) {
+			var rect = canvas.getBoundingClientRect();
+			if (rect.width === 0 || rect.height === 0) { return; }
+			if (e.clientX < rect.left || e.clientX > rect.right || e.clientY < rect.top || e.clientY > rect.bottom) { return; }
+			click.x = (e.clientX - rect.left) * (canvas.width / rect.width);
+			click.y = (e.clientY - rect.top) * (canvas.height / rect.height);
+			click.time = performance.now();
+		});
+	}
+
 	/*
 	 * Sized via ResizeObserver, not a one-shot read: a deferred script can
 	 * execute before layout settles, leaving the backing store at a stale
@@ -95,6 +114,9 @@
 		var REPEL_RADIUS = Math.min(w, h) * 0.16;
 		var MAX_PUSH = Math.min(w, h) * 0.045;
 		var MOUSE_CONNECT_RADIUS = Math.min(w, h) * 0.24;
+		var CLICK_RADIUS = Math.min(w, h) * 0.38;
+		var CLICK_MAX_PUSH = Math.min(w, h) * 0.16;
+		var CLICK_DURATION = 700;
 
 		for (var i = 0; i < POINTS; i++) {
 			var p = points[i];
@@ -106,23 +128,42 @@
 
 		var proj = points.map(function (p) { return [cx + p.x * fieldRadius, cy + p.y * fieldRadius]; });
 
+		var clickElapsed = performance.now() - click.time;
+		var clickTimeFactor = clickElapsed < CLICK_DURATION ? Math.pow(1 - clickElapsed / CLICK_DURATION, 2) : 0;
+
 		/* Displayed positions = natural drift position + a temporary push
-		   away from the cursor, recomputed fresh every frame — nothing
-		   about the underlying drift state is mutated, so a point relaxes
-		   back to its natural path the instant the cursor moves away. Only
-		   the front, interactive layer is ever displaced. */
+		   away from the cursor and/or the most recent click, recomputed
+		   fresh every frame — nothing about the underlying drift state is
+		   mutated, so a point relaxes back to its natural path the instant
+		   the cursor moves away or the click burst fades out. Only the
+		   front, interactive layer is ever displaced. */
 		var displayed = proj.map(function (pt, idx) {
-			if (!mouse.active || !DEPTH_LAYERS[points[idx].layer].interactive) {
+			if (!DEPTH_LAYERS[points[idx].layer].interactive) {
 				return pt;
 			}
-			var dx = pt[0] - mouse.x;
-			var dy = pt[1] - mouse.y;
-			var dist = Math.sqrt(dx * dx + dy * dy);
-			if (dist >= REPEL_RADIUS || dist < 0.001) {
-				return pt;
+			var ox = 0;
+			var oy = 0;
+			if (mouse.active) {
+				var dx = pt[0] - mouse.x;
+				var dy = pt[1] - mouse.y;
+				var dist = Math.sqrt(dx * dx + dy * dy);
+				if (dist < REPEL_RADIUS && dist >= 0.001) {
+					var push = (1 - dist / REPEL_RADIUS) * MAX_PUSH;
+					ox += (dx / dist) * push;
+					oy += (dy / dist) * push;
+				}
 			}
-			var push = (1 - dist / REPEL_RADIUS) * MAX_PUSH;
-			return [pt[0] + (dx / dist) * push, pt[1] + (dy / dist) * push];
+			if (clickTimeFactor > 0) {
+				var cdx = pt[0] - click.x;
+				var cdy = pt[1] - click.y;
+				var cdist = Math.sqrt(cdx * cdx + cdy * cdy);
+				if (cdist < CLICK_RADIUS && cdist >= 0.001) {
+					var cpush = (1 - cdist / CLICK_RADIUS) * CLICK_MAX_PUSH * clickTimeFactor;
+					ox += (cdx / cdist) * cpush;
+					oy += (cdy / cdist) * cpush;
+				}
+			}
+			return [pt[0] + ox, pt[1] + oy];
 		});
 
 		/* Edges only ever connect two points in the SAME layer — a line
