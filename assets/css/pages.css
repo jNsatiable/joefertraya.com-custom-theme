@@ -134,14 +134,16 @@
 .jt-cta__title {
 	font-size: 50px;
 	line-height: 1.2;
-	margin-bottom: 10px;
+	max-width: 720px;
+	margin: 0 auto 10px;
 }
 
 .jt-cta__sub {
 	font-family: var(--font-secondary);
 	font-weight: 300;
 	font-size: 20px;
-	margin: 0 0 24px;
+	max-width: 640px;
+	margin: 0 auto 24px;
 }
 
 /* Page CTA buttons (RESUME excepted — it stays a standard .jt-btn):
