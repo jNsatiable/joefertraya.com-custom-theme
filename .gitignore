@@ -1,2 +1,5 @@
 # Reference copies of the live site's theme/plugins/exports — not ours, not tracked
 reference-files/
+
+# Personal/local Claude Code overrides — settings.json (shared allowlist) is tracked
+.claude/settings.local.json
