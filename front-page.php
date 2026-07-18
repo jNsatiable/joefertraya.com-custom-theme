@@ -44,5 +44,12 @@ $jt_skills = array(
 	</div>
 </section>
 
+<section class="jt-tools-band">
+	<?php
+	jt_render_tools_flap();
+	jt_render_tools_marquee();
+	?>
+</section>
+
 <?php
 get_footer();

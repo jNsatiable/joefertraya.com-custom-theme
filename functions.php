@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'JT_THEME_VERSION', '0.9.25' );
+define( 'JT_THEME_VERSION', '0.9.26' );
 
 require_once get_template_directory() . '/includes/migrate-post-2411.php';
 require_once get_template_directory() . '/includes/smtp-mail.php';
@@ -17,6 +17,7 @@ require_once get_template_directory() . '/includes/update-seo-titles.php';
 require_once get_template_directory() . '/includes/performance.php';
 require_once get_template_directory() . '/includes/contact-form.php';
 require_once get_template_directory() . '/includes/seed-privacy-page.php';
+require_once get_template_directory() . '/includes/tools-widgets.php';
 
 function jt_theme_setup() {
 	add_theme_support( 'title-tag' );
@@ -53,6 +54,16 @@ function jt_enqueue_assets() {
 		wp_enqueue_script(
 			'jt-home-hero',
 			get_template_directory_uri() . '/assets/js/home-hero.js',
+			array(),
+			JT_THEME_VERSION,
+			array(
+				'strategy'  => 'defer',
+				'in_footer' => true,
+			)
+		);
+		wp_enqueue_script(
+			'jt-tools-widgets',
+			get_template_directory_uri() . '/assets/js/tools-widgets.js',
 			array(),
 			JT_THEME_VERSION,
 			array(

@@ -160,9 +160,134 @@
 	}
 }
 
+/* ---- Tools band (marquee + flip board), below the hero ---- */
+
+.jt-tools-band {
+	background: var(--color-charcoal);
+	padding-bottom: 22px;
+}
+
+.jt-flap-widget {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: wrap;
+	gap: 14px;
+	padding: 26px 24px 10px;
+}
+
+.jt-flap-widget__label {
+	font-family: var(--font-heading);
+	font-weight: 600;
+	font-size: 15px;
+	color: var(--color-white);
+}
+
+.jt-flap {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 210px;
+	padding: 10px 22px;
+	background: var(--surface-charcoal-well);
+	border-radius: 6px;
+	perspective: 400px;
+}
+
+.jt-flap__text {
+	font-family: var(--font-heading);
+	font-weight: 700;
+	font-size: 16px;
+	letter-spacing: 0.03em;
+	text-transform: uppercase;
+	color: var(--color-white);
+	white-space: nowrap;
+}
+
+.jt-tools-marquee {
+	position: relative;
+	overflow: hidden;
+	padding: 18px 0;
+}
+
+.jt-tools-marquee::before,
+.jt-tools-marquee::after {
+	content: "";
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	width: 70px;
+	z-index: 2;
+	pointer-events: none;
+}
+
+.jt-tools-marquee::before {
+	left: 0;
+	background: linear-gradient(90deg, var(--color-charcoal), transparent);
+}
+
+.jt-tools-marquee::after {
+	right: 0;
+	background: linear-gradient(270deg, var(--color-charcoal), transparent);
+}
+
+.jt-tools-marquee__track {
+	display: flex;
+	width: max-content;
+	animation-name: jt-tools-scroll;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+}
+
+.jt-tools-marquee:hover .jt-tools-marquee__track {
+	animation-play-state: paused;
+}
+
+.jt-tools-marquee__set {
+	display: flex;
+	align-items: center;
+}
+
+.jt-tools-marquee__item {
+	font-family: var(--font-heading);
+	font-weight: 600;
+	font-size: 17px;
+	color: var(--color-white);
+	white-space: nowrap;
+	padding: 0 24px;
+}
+
+.jt-tools-marquee__dot {
+	width: 4px;
+	height: 4px;
+	border-radius: 50%;
+	background: var(--color-white);
+	flex-shrink: 0;
+}
+
+@keyframes jt-tools-scroll {
+	from { transform: translateX(0); }
+	to { transform: translateX(-50%); }
+}
+
+@media (max-width: 767px) {
+	.jt-flap-widget {
+		padding: 20px 20px 6px;
+	}
+
+	.jt-tools-marquee__item {
+		font-size: 15px;
+		padding: 0 18px;
+	}
+}
+
 @media (prefers-reduced-motion: reduce) {
 	.home-hero__wave,
 	.home-hero__cursor {
+		animation: none;
+	}
+
+	.jt-tools-marquee__track {
 		animation: none;
 	}
 }
