@@ -80,14 +80,17 @@
    looks identical in both themes — only the thumb's position and lit icon
    change. The thumb shows the CURRENT theme (sun lit = light is active),
    not the action a click performs — opposite of the old single-icon button,
-   which showed the icon for what clicking would switch TO. */
+   which showed the icon for what clicking would switch TO. Sized (2026-07-18
+   revision) so its 40px track height matches .site-header__logo-mark exactly
+   — the sun's rays also read as dots at the original 12px icon size, fixed
+   by sizing the whole control up rather than the icon alone. */
 .jt-theme-toggle {
 	position: relative;
 	display: flex;
 	align-items: center;
-	width: 52px;
-	height: 26px;
-	padding: 3px;
+	width: 80px;
+	height: 40px;
+	padding: 5px;
 	border: 0;
 	border-radius: 999px;
 	background: var(--color-charcoal);
@@ -106,8 +109,8 @@
 .jt-theme-toggle__icon {
 	position: absolute;
 	top: 50%;
-	width: 20px;
-	height: 20px;
+	width: 30px;
+	height: 30px;
 	transform: translateY(-50%);
 	display: flex;
 	align-items: center;
@@ -116,23 +119,23 @@
 }
 
 .jt-theme-toggle__icon svg {
-	width: 12px;
-	height: 12px;
+	width: 18px;
+	height: 18px;
 }
 
 .jt-theme-toggle__icon--sun {
-	left: 3px;
+	left: 5px;
 }
 
 .jt-theme-toggle__icon--moon {
-	right: 3px;
+	right: 5px;
 }
 
 .jt-theme-toggle__thumb {
 	position: relative;
 	z-index: 1;
-	width: 20px;
-	height: 20px;
+	width: 30px;
+	height: 30px;
 	border-radius: 50%;
 	background: var(--color-white);
 	display: flex;
@@ -142,12 +145,12 @@
 }
 
 .jt-theme-toggle__thumb svg {
-	width: 12px;
-	height: 12px;
+	width: 18px;
+	height: 18px;
 }
 
 .jt-theme-toggle[data-current-theme="dark"] .jt-theme-toggle__thumb {
-	transform: translateX(26px);
+	transform: translateX(40px);
 }
 
 .jt-theme-toggle .jt-icon-sun {
