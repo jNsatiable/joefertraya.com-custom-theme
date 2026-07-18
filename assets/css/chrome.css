@@ -74,38 +74,98 @@
 	}
 }
 
-/* Dark/light toggle — Rentl pattern; sun shown in dark, moon in light */
+/* Dark/light toggle — pill switch (redesigned 2026-07-18, mockup approved
+   before build; replaces the earlier single-icon square button). Track color
+   is the mode-invariant --color-charcoal brand constant, so the pill itself
+   looks identical in both themes — only the thumb's position and lit icon
+   change. The thumb shows the CURRENT theme (sun lit = light is active),
+   not the action a click performs — opposite of the old single-icon button,
+   which showed the icon for what clicking would switch TO. */
 .jt-theme-toggle {
+	position: relative;
 	display: flex;
 	align-items: center;
-	justify-content: center;
-	width: 40px;
-	height: 40px;
-	border: 1px solid var(--color-border-strong);
-	border-radius: 8px;
-	background: transparent;
-	color: var(--color-text);
+	width: 52px;
+	height: 26px;
+	padding: 3px;
+	border: 0;
+	border-radius: 999px;
+	background: var(--color-charcoal);
 	cursor: pointer;
 	flex-shrink: 0;
 }
 
 @media (hover: hover) {
 	.jt-theme-toggle:hover {
-		color: var(--color-accent);
-		border-color: var(--color-accent);
+		box-shadow: 0 0 0 3px var(--focus-ring);
 	}
 }
 
+/* Static, dimmed icons in the track — always present; the thumb sits on
+   top of and fully covers whichever one matches the active side. */
+.jt-theme-toggle__icon {
+	position: absolute;
+	top: 50%;
+	width: 20px;
+	height: 20px;
+	transform: translateY(-50%);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: rgba(255, 255, 255, 0.4);
+}
+
+.jt-theme-toggle__icon svg {
+	width: 12px;
+	height: 12px;
+}
+
+.jt-theme-toggle__icon--sun {
+	left: 3px;
+}
+
+.jt-theme-toggle__icon--moon {
+	right: 3px;
+}
+
+.jt-theme-toggle__thumb {
+	position: relative;
+	z-index: 1;
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	background: var(--color-white);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: transform 0.25s ease;
+}
+
+.jt-theme-toggle__thumb svg {
+	width: 12px;
+	height: 12px;
+}
+
+.jt-theme-toggle[data-current-theme="dark"] .jt-theme-toggle__thumb {
+	transform: translateX(26px);
+}
+
 .jt-theme-toggle .jt-icon-sun {
+	display: flex;
+	color: var(--color-accent);
+}
+
+.jt-theme-toggle .jt-icon-moon {
+	display: none;
+	color: var(--color-charcoal);
+}
+
+.jt-theme-toggle[data-current-theme="dark"] .jt-icon-sun {
 	display: none;
 }
 
 .jt-theme-toggle[data-current-theme="dark"] .jt-icon-moon {
-	display: none;
-}
-
-.jt-theme-toggle[data-current-theme="dark"] .jt-icon-sun {
-	display: block;
+	display: flex;
 }
 
 .site-nav {
