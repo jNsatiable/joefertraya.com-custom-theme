@@ -35,7 +35,7 @@ $jt_toolkit = array(
 		'Google App Script',
 		'VBA',
 		'iMacros',
-		'n8n Workflow',
+		'n8n',
 	),
 	'Web Development'                   => array(
 		'HTML, CSS, JavaScript, jQuery, React',
@@ -107,7 +107,7 @@ $jt_toolkit = array(
 		'Leonardo.ai',
 		'Playground.ai',
 	),
-	'AI Tools / Automation'             => array(
+	'AI Tools'                           => array(
 		'ChatGPT Codex',
 		'Claude Code',
 		'Notebook LLM',
