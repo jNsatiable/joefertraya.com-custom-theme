@@ -176,7 +176,7 @@ function jt_render_tools_marquee() {
 	$speed = get_option( 'jt_tools_marquee_speed', 34 );
 	?>
 	<div class="jt-tools-row">
-		<span class="jt-tools-marquee__label">Tools I use</span>
+		<span class="jt-tools-marquee__label">J's toolkit</span>
 		<div class="jt-tools-marquee">
 			<div class="jt-tools-marquee__track" style="animation-duration: <?php echo esc_attr( $speed ); ?>s;">
 				<?php for ( $set = 0; $set < 2; $set++ ) : ?>
