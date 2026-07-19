@@ -34,6 +34,7 @@
 	--color-border: rgba(64, 63, 67, 0.1); /* card borders */
 	--color-border-strong: rgba(64, 63, 67, 0.3); /* control borders (hamburger, toggle) */
 	--shadow-color: rgba(64, 63, 67, 0.14); /* floating bar / panel shadows */
+	--surface-pill: rgba(64, 63, 67, 0.06); /* subtle fill for pill-tag lists (About toolkit) */
 	--logo-mark-bg: #403F43;               /* JT mark circle (accent in dark) */
 	--logo-mark-bg-hover: #FB923C;
 
@@ -68,6 +69,7 @@
 		--color-border: rgba(255, 255, 255, 0.08);
 		--color-border-strong: rgba(255, 255, 255, 0.3);
 		--shadow-color: rgba(0, 0, 0, 0.45);
+		--surface-pill: rgba(255, 255, 255, 0.08);
 		--logo-mark-bg: #FB923C;
 		--logo-mark-bg-hover: #403F43;
 	}
@@ -86,6 +88,7 @@
 	--color-border: rgba(255, 255, 255, 0.08);
 	--color-border-strong: rgba(255, 255, 255, 0.3);
 	--shadow-color: rgba(0, 0, 0, 0.45);
+	--surface-pill: rgba(255, 255, 255, 0.08);
 	--logo-mark-bg: #FB923C;
 	--logo-mark-bg-hover: #403F43;
 }
@@ -103,6 +106,7 @@
 	--color-border: rgba(64, 63, 67, 0.1);
 	--color-border-strong: rgba(64, 63, 67, 0.3);
 	--shadow-color: rgba(64, 63, 67, 0.14);
+	--surface-pill: rgba(64, 63, 67, 0.06);
 	--logo-mark-bg: #403F43;
 	--logo-mark-bg-hover: #FB923C;
 }

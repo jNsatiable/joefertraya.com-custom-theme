@@ -4,6 +4,137 @@
  */
 
 get_header();
+
+/**
+ * Full toolkit, by category — unlike the Home hero marquee (a curated
+ * highlight reel), nothing here is filtered out: this section's whole job
+ * is completeness for search, so service-sounding entries like "Shopify
+ * Web Design" go in verbatim rather than being trimmed as non-tools.
+ */
+$jt_toolkit = array(
+	'Ecommerce'                         => array(
+		'Shopify',
+		'WooCommerce',
+		'Shopify Web Design',
+		'Shopify Development',
+		'Shopify Flow',
+		'Replo',
+		'Klaviyo',
+		'MonkeyMail',
+		'UpPromote',
+		'Candy Rack Upsell',
+		'Matrixify',
+		'Qikify Checkout',
+		'AMP Slide Cart Drawer',
+		'Checkout Blocks',
+		'Search & Discovery',
+		'EZ Full Auto Fulfillment',
+	),
+	'Automation & Workflows'             => array(
+		'Zapier',
+		'Google App Script',
+		'VBA',
+		'iMacros',
+		'n8n Workflow',
+	),
+	'Web Development'                   => array(
+		'HTML, CSS, JavaScript, jQuery, React',
+		'Hostinger',
+		'WPEngine',
+		'WordPress',
+		'Salient',
+		'WPBakery',
+		'Elementor',
+		'LightStart',
+		'Otter Blocks',
+		'Wordfence Security',
+		'AntiSpam Bee',
+		'The SEO Framework',
+		'ShortPixel',
+		'PrettyLinks',
+		'Ivory Search',
+		'Elementor Header & Footer Builder',
+		'WPForms',
+		'WPCode',
+		'MonsterInsights',
+		'LiteSpeed Cache',
+		'Essential Addons for Elementor',
+		'Enable Media Replace',
+		'Sticky Header Effects for Elementor',
+		'wpDiscuz',
+		'UpdraftPlus',
+		'Git',
+		'GitHub',
+		'BitBucket',
+	),
+	'Data & Analytics'                  => array(
+		'Power BI',
+		'Tableau',
+		'Google Sheets',
+		'Excel',
+		'R',
+		'SQL',
+		'Python',
+		'Kaggle',
+		'Salesforce',
+	),
+	'Project Management & Productivity' => array(
+		'Google Suite (Docs, Sheets, Drive, Gmail, Workspace)',
+		'MS Office (Word, Excel, OneDrive, Outlook, PowerPoint, Publisher)',
+		'Notion',
+		'Asana',
+		'Monday',
+		'Airtable',
+		'Coda',
+		'Slack',
+		'Teamwork',
+		'Superthread',
+		'Obsidian MD',
+	),
+	'Design & Creative'                 => array(
+		'Figma',
+		'Adobe Photoshop',
+		'Adobe Illustrator',
+		'Adobe Lightroom',
+		'Adobe After Effects',
+		'Adobe Premiere Pro',
+		'DaVinci Resolve',
+		'CapCut',
+		'Fusion 360',
+		'Blender',
+		'Cura',
+		'Midjourney',
+		'Leonardo.ai',
+		'Playground.ai',
+	),
+	'AI Tools / Automation'             => array(
+		'ChatGPT Codex',
+		'Claude Code',
+		'Notebook LLM',
+		'Cursor',
+		'Copilot',
+	),
+	'Recruiting & ATS'                  => array(
+		'Zoho Recruit',
+		'Loxo',
+		'Applicant Tracking Systems (ATS)',
+	),
+	'IT & Remote Support'               => array(
+		'TeamViewer',
+		'AnyDesk',
+		'Remote Utilities',
+		'Open Media Vault',
+		'Raspberry Pi',
+	),
+	'Programming Languages'             => array(
+		'Python',
+		'VBA',
+		'Java',
+		'C++',
+		'HTML, CSS, JavaScript, jQuery, React',
+		'SQL',
+	),
+);
 ?>
 
 <section class="page-section about-intro">
@@ -58,6 +189,27 @@ get_header();
 				<summary>Who I Work Best With</summary>
 				<div class="jt-toggle__body"><p>Give me the "why" behind a task, not just the "what": context beats guesswork every time. I do best with people who trust me to run with things instead of re-explaining every step, though I'll never hesitate to ask a clarifying question along the way. Patient, collaborative types get bonus points; see my Kryptonite above for why.</p></div>
 			</details>
+		</div>
+	</div>
+</section>
+
+<section class="page-section about-toolkit">
+	<div class="container">
+		<h3 class="section-title">Full Toolkit</h3>
+		<p class="about-toolkit__intro">Everything I reach for, organized by category — the short version lives in the scrolling strip on the Home page; this is the whole kit.</p>
+		<div class="jt-toggles">
+			<?php foreach ( $jt_toolkit as $jt_toolkit_category => $jt_toolkit_items ) : ?>
+				<details class="jt-toggle">
+					<summary><?php echo esc_html( $jt_toolkit_category ); ?></summary>
+					<div class="jt-toggle__body">
+						<ul>
+							<?php foreach ( $jt_toolkit_items as $jt_toolkit_item ) : ?>
+								<li><?php echo esc_html( $jt_toolkit_item ); ?></li>
+							<?php endforeach; ?>
+						</ul>
+					</div>
+				</details>
+			<?php endforeach; ?>
 		</div>
 	</div>
 </section>
