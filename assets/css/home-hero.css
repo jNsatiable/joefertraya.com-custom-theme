@@ -164,45 +164,50 @@
 
 .jt-tools-band {
 	background: var(--color-charcoal);
-	padding-bottom: 22px;
+}
+
+/* Pinned label + scrolling track share one line — the label never moves,
+   only .jt-tools-marquee's track does, so accent color (not a divider
+   line) is what visually separates the fixed tag from the scrolling
+   strip. Ticker text/dots run at reduced opacity so the label reads as
+   the anchor and the names feel like they're flowing past it. */
+.jt-tools-row {
+	display: flex;
+	align-items: center;
+	min-height: 64px;
 }
 
 .jt-tools-marquee__label {
-	text-align: center;
+	flex-shrink: 0;
+	display: flex;
+	align-items: center;
+	height: 100%;
+	padding: 0 24px;
 	font-family: var(--font-heading);
-	font-weight: 600;
-	font-size: 13px;
-	letter-spacing: 0.06em;
+	font-weight: 700;
+	font-size: 12px;
+	letter-spacing: 0.08em;
 	text-transform: uppercase;
-	color: var(--color-white);
-	margin: 0;
-	padding-top: 28px;
+	color: var(--color-accent);
+	white-space: nowrap;
 }
 
 .jt-tools-marquee {
 	position: relative;
 	overflow: hidden;
-	padding: 10px 0 18px;
+	flex: 1;
+	min-width: 0;
 }
 
-.jt-tools-marquee::before,
 .jt-tools-marquee::after {
 	content: "";
 	position: absolute;
 	top: 0;
+	right: 0;
 	bottom: 0;
 	width: 70px;
 	z-index: 2;
 	pointer-events: none;
-}
-
-.jt-tools-marquee::before {
-	left: 0;
-	background: linear-gradient(90deg, var(--color-charcoal), transparent);
-}
-
-.jt-tools-marquee::after {
-	right: 0;
 	background: linear-gradient(270deg, var(--color-charcoal), transparent);
 }
 
@@ -228,6 +233,7 @@
 	font-weight: 600;
 	font-size: 17px;
 	color: var(--color-white);
+	opacity: 0.72;
 	white-space: nowrap;
 	padding: 0 24px;
 }
@@ -237,6 +243,7 @@
 	height: 4px;
 	border-radius: 50%;
 	background: var(--color-white);
+	opacity: 0.35;
 	flex-shrink: 0;
 }
 
@@ -246,8 +253,34 @@
 }
 
 @media (max-width: 767px) {
+	/* The pinned label eats too much of an already-narrow strip on
+	   mobile — fall back to the stacked layout, label centered above a
+	   full-width track with both edge fades restored. */
+	.jt-tools-row {
+		flex-direction: column;
+		align-items: stretch;
+	}
+
 	.jt-tools-marquee__label {
-		padding-top: 22px;
+		justify-content: center;
+		height: auto;
+		padding: 18px 0 4px;
+	}
+
+	.jt-tools-marquee {
+		padding: 10px 0 18px;
+	}
+
+	.jt-tools-marquee::before {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		width: 50px;
+		z-index: 2;
+		pointer-events: none;
+		background: linear-gradient(90deg, var(--color-charcoal), transparent);
 	}
 
 	.jt-tools-marquee__item {
