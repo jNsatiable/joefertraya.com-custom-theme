@@ -60,8 +60,31 @@
 	height: auto;
 }
 
+/* Pure white, forced regardless of the site's own light/dark toggle —
+   same idea as .about-intro's charcoal above it, just the opposite
+   surface, so this section and .about-toolkit right after it read as
+   unmistakably separate (token-based near-white/white pairings and a
+   hairline border both turned out to not be enough contrast). Text/
+   divider colors are forced right along with it - color: var(--color-
+   charcoal) here cascades to the title/summary/answer text below, and
+   .section-intro/.jt-toggle need their own override since they already
+   set an explicit (theme-dependent) color of their own that inheriting
+   from a parent wouldn't touch. */
+.about-quirks {
+	background: var(--color-white);
+	color: var(--color-charcoal);
+}
+
 .about-quirks .section-title {
 	text-align: center;
+}
+
+.about-quirks .section-intro {
+	color: var(--color-charcoal);
+}
+
+.about-quirks .jt-toggle {
+	border-bottom-color: var(--divider-on-light);
 }
 
 .jt-toggles {
@@ -119,23 +142,29 @@
 
 /* --- About: Full Toolkit --- */
 
+/* Brand charcoal, forced regardless of the site's own light/dark toggle
+   — same surface .about-intro already uses above, giving this page a
+   charcoal / white / charcoal rhythm instead of relying on subtle
+   surface-token differences that didn't read as separate enough. */
 .about-toolkit {
-	/* Distinct from .about-quirks above (plain page background) and
-	   .jt-cta below (--color-light-section) so three sections in a row
-	   don't blend into one continuous band. --surface-card (not a plain
-	   white) so it still reads as "white" in light mode without staying
-	   blindingly white in dark mode - same token used for cards/the
-	   mobile nav panel elsewhere on the site. In light mode specifically,
-	   --surface-card (#FFFFFF) and the page's own --color-bg (#FBFEFB)
-	   are close enough to read as the same color - a hairline border
-	   (same 0.5px convention as .jt-toggle/.post-comments) marks the
-	   boundary explicitly rather than relying on that contrast alone. */
-	background: var(--surface-card);
-	border-top: 0.5px solid var(--color-divider);
+	background: var(--color-charcoal);
+	color: var(--color-white);
 }
 
 .about-toolkit .section-title {
 	text-align: center;
+}
+
+.about-toolkit .section-intro {
+	color: var(--color-white);
+}
+
+.about-toolkit .jt-toggle {
+	border-bottom-color: var(--footer-seam);
+}
+
+.about-toolkit .jt-toggle__body li {
+	background: var(--surface-pill-on-charcoal);
 }
 
 /* Shared by any section-title intro line (currently More J Stuff and
