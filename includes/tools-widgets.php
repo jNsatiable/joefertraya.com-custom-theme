@@ -15,14 +15,18 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /* ==========================================================================
-   1. Defaults — curated from Joefer's full toolkit list (2026-07-19),
+   1. Defaults — curated from Joefer's full toolkit list (2026-07-20),
       spanning the same categories as front-page.php's $jt_skills rotator
-      (eCommerce, web dev, automation, PM, data, design/photo/video, AI)
-      plus one new one the fuller list surfaced (AI tools), ordered with
-      the most recognizable/searched names first. The full list has plenty
-      of niche/internal picks (specific Shopify apps, WP plugins, ATS
-      tools) left out here on purpose — this is a highlight reel, not the
-      complete inventory; Settings > JT Theme can override it entirely.
+      (eCommerce, web dev, automation, PM, data, design/photo/video) plus
+      AI tools and hosting, ordered with the most recognizable/searched
+      names first. Deliberately not the complete inventory: service
+      descriptions ("Shopify Web Design"), category labels ("Applicant
+      Tracking Systems"), and niche/internal picks (specific Shopify apps,
+      WP plugins, ATS tools) are left out — this is a highlight reel meant
+      to register at a skim, not a full list; Settings > JT Theme can
+      override it entirely. AI tools use plain brand names (ChatGPT, not
+      "ChatGPT Codex") since the marquee's audience is prospective clients,
+      not developers who'd recognize the specific product.
    ========================================================================== */
 
 function jt_tools_marquee_default_items() {
@@ -41,12 +45,13 @@ function jt_tools_marquee_default_items() {
 		'Airtable',
 		'Lightroom',
 		'Premiere Pro',
-		'After Effects',
 		'React',
 		'Power BI',
 		'Salesforce',
 		'n8n',
 		'Google Sheets',
+		'GitHub',
+		'Hostinger',
 	);
 }
 
