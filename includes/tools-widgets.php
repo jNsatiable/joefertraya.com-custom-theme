@@ -15,28 +15,35 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /* ==========================================================================
-   1. Defaults — spans the categories already listed in front-page.php's
-      $jt_skills rotator (eCommerce, web dev, automation, PM, data, design/
-      photo/video), ordered with the most recognizable/searched names first.
+   1. Defaults — curated from Joefer's full toolkit list (2026-07-19),
+      spanning the same categories as front-page.php's $jt_skills rotator
+      (eCommerce, web dev, automation, PM, data, design/photo/video, AI)
+      plus one new one the fuller list surfaced (AI tools), ordered with
+      the most recognizable/searched names first. The full list has plenty
+      of niche/internal picks (specific Shopify apps, WP plugins, ATS
+      tools) left out here on purpose — this is a highlight reel, not the
+      complete inventory; Settings > JT Theme can override it entirely.
    ========================================================================== */
 
 function jt_tools_marquee_default_items() {
 	return array(
 		'Shopify',
 		'WordPress',
+		'Figma',
 		'WooCommerce',
+		'ChatGPT',
 		'Klaviyo',
 		'Zapier',
 		'Notion',
-		'Airtable',
+		'Photoshop',
 		'Python',
 		'SQL',
-		'Power BI',
-		'Photoshop',
+		'Airtable',
 		'Lightroom',
 		'Premiere Pro',
 		'After Effects',
 		'React',
+		'Power BI',
 		'Salesforce',
 		'n8n',
 		'Google Sheets',
