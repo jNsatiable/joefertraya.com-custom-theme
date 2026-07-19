@@ -60,31 +60,15 @@
 	height: auto;
 }
 
-/* Pure white, forced regardless of the site's own light/dark toggle —
-   same idea as .about-intro's charcoal above it, just the opposite
-   surface, so this section and .about-toolkit right after it read as
-   unmistakably separate (token-based near-white/white pairings and a
-   hairline border both turned out to not be enough contrast). Text/
-   divider colors are forced right along with it - color: var(--color-
-   charcoal) here cascades to the title/summary/answer text below, and
-   .section-intro/.jt-toggle need their own override since they already
-   set an explicit (theme-dependent) color of their own that inheriting
-   from a parent wouldn't touch. */
-.about-quirks {
-	background: var(--color-white);
-	color: var(--color-charcoal);
-}
-
+/* Plain page background, following the site's own light/dark toggle
+   (a forced-white version of this section was tried and reverted — it
+   fixed separation from .about-toolkit below it, but a bright white
+   band between two charcoal sections read as a jarring light island in
+   dark mode specifically). Separation from .about-toolkit comes from
+   the charcoal below it being visibly lighter than this section's own
+   dark-mode background instead, which holds up in both themes. */
 .about-quirks .section-title {
 	text-align: center;
-}
-
-.about-quirks .section-intro {
-	color: var(--color-charcoal);
-}
-
-.about-quirks .jt-toggle {
-	border-bottom-color: var(--divider-on-light);
 }
 
 .jt-toggles {
@@ -143,12 +127,20 @@
 /* --- About: Full Toolkit --- */
 
 /* Brand charcoal, forced regardless of the site's own light/dark toggle
-   — same surface .about-intro already uses above, giving this page a
-   charcoal / white / charcoal rhythm instead of relying on subtle
-   surface-token differences that didn't read as separate enough. */
+   — same surface .about-intro already uses above. Reads distinct from
+   .about-quirks above it (that section's own dark-mode background is
+   visibly darker than this charcoal) in both themes. */
 .about-toolkit {
 	background: var(--color-charcoal);
 	color: var(--color-white);
+	/* --color-light-section's dark-mode value (#403E44) is nearly
+	   identical to --color-charcoal (#403F43) - off by a single hex
+	   point per channel - so this section and .jt-cta right after it
+	   would otherwise blend into one band in dark mode, same class of
+	   problem as the one this whole section rework started from. Same
+	   --footer-seam token already used where the Home hero meets the
+	   footer - both are "two charcoal-toned surfaces meeting" cases. */
+	border-bottom: 1px solid var(--footer-seam);
 }
 
 .about-toolkit .section-title {

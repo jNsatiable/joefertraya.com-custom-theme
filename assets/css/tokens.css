@@ -21,9 +21,8 @@
 	--color-light-section: #E2E8F0; /* CTA band bg */
 	--color-white: #FFFFFF;   /* pure white — logo lockup block, text on accent — same in both modes */
 	--color-divider: #D8D8D8; /* hairline dividers */
-	--footer-seam: rgba(255, 255, 255, 0.18); /* hairline where charcoal surfaces meet (Home hero → footer) — mode-invariant */
-	--divider-on-light: #D8D8D8; /* hairline for a forced-white surface (About "More J Stuff") — same value as --color-divider's own light-mode value, but mode-invariant since the surface itself doesn't flip with the theme toggle */
-	--surface-pill-on-charcoal: rgba(255, 255, 255, 0.08); /* pill-tag fill for a forced-charcoal surface (About "Full Toolkit") — same value as --surface-pill's own dark-mode value, but mode-invariant for the same reason as --divider-on-light above */
+	--footer-seam: rgba(255, 255, 255, 0.18); /* hairline where charcoal surfaces meet (Home hero → footer, About Full Toolkit → CTA) — mode-invariant */
+	--surface-pill-on-charcoal: rgba(255, 255, 255, 0.08); /* pill-tag fill for a forced-charcoal surface (About "Full Toolkit") — same value as --surface-pill's own dark-mode value, but mode-invariant since the surface itself doesn't flip with the theme toggle */
 	--focus-ring: rgba(251, 146, 60, 0.25); /* accent glow on focused form fields — mode-invariant */
 	--surface-notice-error: #F5C6C6; /* error notice bg, charcoal text on top — mode-invariant */
 	--surface-tools-band: #29282B; /* tools marquee band — same tone as --surface-bar's dark-mode color, reused mode-invariant so the band reads distinct from the charcoal hero/footer it sits between. Solid, not the header's rgba(41,40,43,0.85): the header's transparency exists for its frosted-glass float-over-content effect, which doesn't apply to a full-bleed section — kept as alpha, the marquee's edge-fade gradients would stack a second translucent layer on top of the band's own, compounding to a visibly darker patch right where each fade is most opaque (very visible in light mode, where the surrounding page is bright enough to expose the mismatch; nearly invisible in dark mode, which is why it wasn't caught immediately) */
