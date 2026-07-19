@@ -199,15 +199,28 @@
 	min-width: 0;
 }
 
+/* Left fade is still needed even though the label sits right next to it —
+   the label only covers its own width, so without this, text scrolling
+   past that boundary pops in/out with a hard cut instead of a soft fade
+   (visible as a mid-word crop right after the label). */
+.jt-tools-marquee::before,
 .jt-tools-marquee::after {
 	content: "";
 	position: absolute;
 	top: 0;
-	right: 0;
 	bottom: 0;
 	width: 70px;
 	z-index: 2;
 	pointer-events: none;
+}
+
+.jt-tools-marquee::before {
+	left: 0;
+	background: linear-gradient(90deg, var(--surface-tools-band), transparent);
+}
+
+.jt-tools-marquee::after {
+	right: 0;
 	background: linear-gradient(270deg, var(--surface-tools-band), transparent);
 }
 
@@ -271,16 +284,9 @@
 		padding: 10px 0 18px;
 	}
 
-	.jt-tools-marquee::before {
-		content: "";
-		position: absolute;
-		top: 0;
-		left: 0;
-		bottom: 0;
+	.jt-tools-marquee::before,
+	.jt-tools-marquee::after {
 		width: 50px;
-		z-index: 2;
-		pointer-events: none;
-		background: linear-gradient(90deg, var(--surface-tools-band), transparent);
 	}
 
 	.jt-tools-marquee__item {
