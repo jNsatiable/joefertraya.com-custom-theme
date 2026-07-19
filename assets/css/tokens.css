@@ -24,6 +24,7 @@
 	--footer-seam: rgba(255, 255, 255, 0.18); /* hairline where charcoal surfaces meet (Home hero → footer) — mode-invariant */
 	--focus-ring: rgba(251, 146, 60, 0.25); /* accent glow on focused form fields — mode-invariant */
 	--surface-notice-error: #F5C6C6; /* error notice bg, charcoal text on top — mode-invariant */
+	--surface-tools-band: rgba(41, 40, 43, 0.85); /* tools marquee band — same value as --surface-bar's dark-mode tone, reused mode-invariant so the band reads distinct from the charcoal hero/footer it sits between instead of merging into one block */
 
 	/* Mode-dependent surfaces (dark values below) */
 	--surface-footer: #403F43;             /* footer: brand charcoal in light; steps darker in dark so it anchors below the bands */
