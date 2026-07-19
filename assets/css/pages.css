@@ -122,8 +122,11 @@
 .about-toolkit {
 	/* Distinct from .about-quirks above (plain page background) and
 	   .jt-cta below (--color-light-section) so three sections in a row
-	   don't blend into one continuous band. */
-	background: var(--color-surface);
+	   don't blend into one continuous band. --surface-card (not a plain
+	   white) so it still reads as "white" in light mode without staying
+	   blindingly white in dark mode - same token used for cards/the
+	   mobile nav panel elsewhere on the site. */
+	background: var(--surface-card);
 }
 
 .about-toolkit .section-title {
