@@ -167,10 +167,11 @@
 }
 
 /* Pinned label + scrolling track share one line — the label never moves,
-   only .jt-tools-marquee's track does, so accent color (not a divider
-   line) is what visually separates the fixed tag from the scrolling
-   strip. Ticker text/dots run at reduced opacity so the label reads as
-   the anchor and the names feel like they're flowing past it. */
+   only .jt-tools-marquee's track does. Full-opacity white + bold weight
+   is what visually separates the fixed tag from the scrolling strip now
+   (no divider line, no color difference — both are white). Ticker
+   text/dots run at reduced opacity so the label reads as the anchor and
+   the names feel like they're flowing past it. */
 .jt-tools-row {
 	display: flex;
 	align-items: center;
@@ -188,7 +189,7 @@
 	font-size: 12px;
 	letter-spacing: 0.08em;
 	text-transform: uppercase;
-	color: var(--color-accent);
+	color: var(--color-white);
 	white-space: nowrap;
 }
 
