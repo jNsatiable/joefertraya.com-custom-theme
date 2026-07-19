@@ -166,22 +166,33 @@
 	background: var(--surface-tools-band);
 }
 
-/* Pinned label + scrolling track share one line — the label never moves,
-   only .jt-tools-marquee's track does. Full-opacity white + bold weight
-   is what visually separates the fixed tag from the scrolling strip now
-   (no divider line, no color difference — both are white). Ticker
-   text/dots run at reduced opacity so the label reads as the anchor and
-   the names feel like they're flowing past it. */
+/* The whole row is a single link to the About page's full toolkit list —
+   hovering anywhere along the strip, not just the pinned label, swaps
+   the label to accent orange and shows the same "click to see the rest"
+   tooltip (positioned by tools-marquee.js). Ticker text/dots run at
+   reduced opacity so the label reads as the anchor and the names feel
+   like they're flowing past it. */
 .jt-tools-row {
+	position: relative;
 	display: flex;
 	align-items: center;
 	min-height: 64px;
+	color: var(--color-white);
+	text-decoration: none;
+	transition: color 0.2s ease;
+}
+
+@media (hover: hover) {
+	.jt-tools-row:hover {
+		color: var(--color-accent);
+	}
 }
 
 .jt-tools-marquee__label {
 	flex-shrink: 0;
 	display: flex;
 	align-items: center;
+	gap: 5px;
 	height: 100%;
 	padding: 0 24px;
 	font-family: var(--font-heading);
@@ -189,8 +200,94 @@
 	font-size: 12px;
 	letter-spacing: 0.08em;
 	text-transform: uppercase;
-	color: var(--color-white);
+	color: inherit;
 	white-space: nowrap;
+}
+
+/* Northeast arrow, portal-cut loop: the "port" is exactly 1em - the
+   label's own font-box - so the clip lines land at the literal top/
+   bottom of "J's Toolkit," not an arbitrary icon-sized box. Two copies
+   of the arrow sit one throw (1em) apart along the diagonal inside it;
+   overflow: hidden does the cutting as each crosses the boundary - as
+   one exits through the top-right edge, the other is simultaneously
+   revealing through the bottom-left, like it re-entered through a
+   portal on the opposite side. Rests at center for just over half the
+   ~2.4s cycle, then one ease-in-out dash covers the trip. */
+.jt-tools-arrow {
+	position: relative;
+	width: 1em;
+	height: 1em;
+	overflow: hidden;
+	flex-shrink: 0;
+}
+
+.jt-tools-arrow__track {
+	position: absolute;
+	inset: 0;
+	transform: translate(0, 0);
+	animation: jt-tools-arrow-loop 2.4s ease-in-out infinite;
+}
+
+.jt-tools-arrow__icon {
+	position: absolute;
+	width: 0.85em;
+	height: 0.85em;
+	top: 0.075em;
+	left: 0.075em;
+}
+
+.jt-tools-arrow__icon--b {
+	transform: translate(-1em, 1em);
+}
+
+@keyframes jt-tools-arrow-loop {
+	0%, 55% { transform: translate(0, 0); }
+	100% { transform: translate(1em, -1em); }
+}
+
+/* Snap to rest, not pause-wherever-it-is: removing the animation on
+   hover (rather than just pausing it) drops the track back to its
+   plain, non-animated transform above - the same translate(0,0) the
+   animation's own rest state uses - so it's instantly at rest
+   regardless of where in the cycle it actually was. Re-adding the
+   animation on mouseleave always restarts fresh from 0% for the same
+   reason. */
+@media (hover: hover) {
+	.jt-tools-row:hover .jt-tools-arrow__track {
+		animation: none;
+	}
+}
+
+/* Tooltip — positioned by tools-marquee.js at the mouse's entry point
+   only (set once, on pointerenter, via --tip-x) and left alone for the
+   rest of the hover; it does not track further mousemove. Solid accent
+   pill, no pointer nub — matches the pill shape already used for the
+   About page's toolkit tags rather than introducing a speech-balloon
+   idiom that exists nowhere else on the site. */
+.jt-tools-hover-tip {
+	position: absolute;
+	left: var(--tip-x, 50%);
+	bottom: calc(100% + 10px);
+	transform: translate(-50%, 4px);
+	background: var(--color-accent);
+	color: #1c1b1e;
+	font-family: var(--font-heading);
+	font-weight: 600;
+	font-size: 12px;
+	letter-spacing: 0.01em;
+	text-transform: none;
+	white-space: nowrap;
+	padding: 6px 14px;
+	border-radius: 999px;
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity 0.2s ease, transform 0.2s ease;
+	z-index: 5;
+}
+
+.jt-tools-hover-tip.is-visible {
+	opacity: 1;
+	transform: translate(-50%, 0);
 }
 
 .jt-tools-marquee {
@@ -292,7 +389,8 @@
 		animation: none;
 	}
 
-	.jt-tools-marquee__track {
+	.jt-tools-marquee__track,
+	.jt-tools-arrow__track {
 		animation: none;
 	}
 }
