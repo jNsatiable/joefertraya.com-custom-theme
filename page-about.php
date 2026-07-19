@@ -156,6 +156,7 @@ $jt_toolkit = array(
 <section class="page-section about-quirks">
 	<div class="container">
 		<h3 class="section-title">More J Stuff</h3>
+		<p class="section-intro">The parts of me a resume doesn't cover.</p>
 		<div class="jt-toggles">
 			<details class="jt-toggle">
 				<summary>Why "J"?</summary>
@@ -196,7 +197,7 @@ $jt_toolkit = array(
 <section class="page-section about-toolkit" id="full-toolkit">
 	<div class="container">
 		<h3 class="section-title">Full Toolkit</h3>
-		<p class="about-toolkit__intro">Everything I reach for, organized by category.</p>
+		<p class="section-intro">Everything I reach for, organized by category.</p>
 		<div class="jt-toggles">
 			<?php foreach ( $jt_toolkit as $jt_toolkit_category => $jt_toolkit_items ) : ?>
 				<details class="jt-toggle">
