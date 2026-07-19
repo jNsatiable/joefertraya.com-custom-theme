@@ -267,22 +267,12 @@
 }
 
 @media (max-width: 767px) {
-	/* The pinned label eats too much of an already-narrow strip on
-	   mobile — fall back to the stacked layout, label centered above a
-	   full-width track with both edge fades restored. */
-	.jt-tools-row {
-		flex-direction: column;
-		align-items: stretch;
-	}
-
+	/* Stays inline with the ticker on mobile too (no longer falls back to
+	   a stacked layout) — just tighter, so the fixed label leaves more
+	   room for the scrolling track. */
 	.jt-tools-marquee__label {
-		justify-content: center;
-		height: auto;
-		padding: 18px 0 4px;
-	}
-
-	.jt-tools-marquee {
-		padding: 10px 0 18px;
+		padding: 0 14px;
+		font-size: 11px;
 	}
 
 	.jt-tools-marquee::before,
