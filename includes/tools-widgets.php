@@ -164,30 +164,49 @@ function jt_settings_field_number( $args ) {
    ========================================================================== */
 
 /**
- * A pinned label sits on the same line as the strip (2026-07-20 redesign —
- * previously stacked above it) rather than scrolling with it; only the
- * track to its right scrolls. Two duplicate sets back to back, scrolled
- * left by exactly one set's width (translateX(-50%) — see home-hero.css)
- * for a seamless loop; the second is aria-hidden since it's a visual
- * duplicate, not new content.
+ * The whole row is a single link to the About page's full toolkit list
+ * (2026-07-20) — a pinned "J's Toolkit" label with an animated arrow, a
+ * scrolling ticker, and a hover tooltip (positioned by tools-marquee.js
+ * at wherever the mouse entered, not tracked further) all live inside
+ * one <a>. The ticker itself is aria-hidden since its content is
+ * decorative once wrapped in a link — the link's accessible name comes
+ * from aria-label instead, so a screen reader doesn't read out the
+ * entire scrolling tool list as the link text. Two duplicate ticker sets
+ * back to back, scrolled left by exactly one set's width
+ * (translateX(-50%) — see home-hero.css) for a seamless loop.
  */
 function jt_render_tools_marquee() {
 	$items = jt_tools_widget_parse_items( get_option( 'jt_tools_marquee_items', '' ), jt_tools_marquee_default_items() );
 	$speed = get_option( 'jt_tools_marquee_speed', 34 );
 	?>
-	<div class="jt-tools-row">
-		<span class="jt-tools-marquee__label">J's toolkit</span>
-		<div class="jt-tools-marquee">
+	<a class="jt-tools-row" href="<?php echo esc_url( home_url( '/about/#full-toolkit' ) ); ?>" aria-label="See my full toolkit">
+		<span class="jt-tools-marquee__label">
+			J's Toolkit
+			<span class="jt-tools-arrow" aria-hidden="true">
+				<span class="jt-tools-arrow__track">
+					<svg class="jt-tools-arrow__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="square" stroke-linejoin="miter">
+						<path d="M7 17L17 7"/>
+						<path d="M9 7H17V15"/>
+					</svg>
+					<svg class="jt-tools-arrow__icon jt-tools-arrow__icon--b" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75" stroke-linecap="square" stroke-linejoin="miter">
+						<path d="M7 17L17 7"/>
+						<path d="M9 7H17V15"/>
+					</svg>
+				</span>
+			</span>
+		</span>
+		<div class="jt-tools-marquee" aria-hidden="true">
 			<div class="jt-tools-marquee__track" style="animation-duration: <?php echo esc_attr( $speed ); ?>s;">
 				<?php for ( $set = 0; $set < 2; $set++ ) : ?>
-					<div class="jt-tools-marquee__set"<?php echo 1 === $set ? ' aria-hidden="true"' : ''; ?>>
+					<div class="jt-tools-marquee__set">
 						<?php foreach ( $items as $item ) : ?>
-							<span class="jt-tools-marquee__item"><?php echo esc_html( $item ); ?></span><span class="jt-tools-marquee__dot" aria-hidden="true"></span>
+							<span class="jt-tools-marquee__item"><?php echo esc_html( $item ); ?></span><span class="jt-tools-marquee__dot"></span>
 						<?php endforeach; ?>
 					</div>
 				<?php endfor; ?>
 			</div>
 		</div>
-	</div>
+		<span class="jt-tools-hover-tip">Click to see my full toolkit</span>
+	</a>
 	<?php
 }

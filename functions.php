@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'JT_THEME_VERSION', '0.9.34' );
+define( 'JT_THEME_VERSION', '0.9.35' );
 
 require_once get_template_directory() . '/includes/migrate-post-2411.php';
 require_once get_template_directory() . '/includes/smtp-mail.php';
@@ -54,6 +54,16 @@ function jt_enqueue_assets() {
 		wp_enqueue_script(
 			'jt-home-hero',
 			get_template_directory_uri() . '/assets/js/home-hero.js',
+			array(),
+			JT_THEME_VERSION,
+			array(
+				'strategy'  => 'defer',
+				'in_footer' => true,
+			)
+		);
+		wp_enqueue_script(
+			'jt-tools-marquee',
+			get_template_directory_uri() . '/assets/js/tools-marquee.js',
 			array(),
 			JT_THEME_VERSION,
 			array(

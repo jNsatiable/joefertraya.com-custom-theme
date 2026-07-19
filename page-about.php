@@ -193,7 +193,7 @@ $jt_toolkit = array(
 	</div>
 </section>
 
-<section class="page-section about-toolkit">
+<section class="page-section about-toolkit" id="full-toolkit">
 	<div class="container">
 		<h3 class="section-title">Full Toolkit</h3>
 		<p class="about-toolkit__intro">Everything I reach for, organized by category — the short version lives in the scrolling strip on the Home page; this is the whole kit.</p>
