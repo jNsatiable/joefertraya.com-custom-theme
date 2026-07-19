@@ -45,10 +45,7 @@ $jt_skills = array(
 </section>
 
 <section class="jt-tools-band">
-	<?php
-	jt_render_tools_flap();
-	jt_render_tools_marquee();
-	?>
+	<?php jt_render_tools_marquee(); ?>
 </section>
 
 <?php

@@ -160,54 +160,29 @@
 	}
 }
 
-/* ---- Tools band (marquee + flip board), below the hero ---- */
+/* ---- Tools band (marquee), below the hero ---- */
 
 .jt-tools-band {
 	background: var(--color-charcoal);
 	padding-bottom: 22px;
 }
 
-.jt-flap-widget {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	flex-wrap: wrap;
-	gap: 14px;
-	padding: 26px 24px 10px;
-}
-
-.jt-flap-widget__label {
+.jt-tools-marquee__label {
+	text-align: center;
 	font-family: var(--font-heading);
 	font-weight: 600;
-	font-size: 15px;
-	color: var(--color-white);
-}
-
-.jt-flap {
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-	min-width: 210px;
-	padding: 10px 22px;
-	background: var(--surface-charcoal-well);
-	border-radius: 6px;
-	perspective: 400px;
-}
-
-.jt-flap__text {
-	font-family: var(--font-heading);
-	font-weight: 700;
-	font-size: 16px;
-	letter-spacing: 0.03em;
+	font-size: 13px;
+	letter-spacing: 0.06em;
 	text-transform: uppercase;
 	color: var(--color-white);
-	white-space: nowrap;
+	margin: 0;
+	padding-top: 28px;
 }
 
 .jt-tools-marquee {
 	position: relative;
 	overflow: hidden;
-	padding: 18px 0;
+	padding: 10px 0 18px;
 }
 
 .jt-tools-marquee::before,
@@ -271,8 +246,8 @@
 }
 
 @media (max-width: 767px) {
-	.jt-flap-widget {
-		padding: 20px 20px 6px;
+	.jt-tools-marquee__label {
+		padding-top: 22px;
 	}
 
 	.jt-tools-marquee__item {

@@ -1,10 +1,13 @@
 <?php
 /**
- * Home page "Tools I work with" widgets — a monochrome auto-scroll marquee
- * (breadth: the full toolkit) and a split-flap-style flip board (a single
- * curated highlight, one at a time). Both admin-editable from Settings >
- * JT Theme, reusing the options page contact-form.php already registers —
- * an empty item list falls back to the default list below.
+ * Home page "Tools I work with" marquee — a monochrome auto-scroll strip
+ * of the full toolkit, admin-editable from Settings > JT Theme, reusing the
+ * options page contact-form.php already registers. An empty item list
+ * falls back to the default list below.
+ *
+ * A split-flap "flip board" companion widget shipped alongside this
+ * (PR #75) and was removed the next day (2026-07-19) — the flip didn't
+ * track correctly live, and the marquee alone covers the same job.
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -40,19 +43,6 @@ function jt_tools_marquee_default_items() {
 	);
 }
 
-function jt_tools_flap_default_items() {
-	return array(
-		'Shopify',
-		'WordPress',
-		'Python',
-		'Zapier',
-		'Notion',
-		'Photoshop',
-		'SQL',
-		'Premiere Pro',
-	);
-}
-
 /**
  * One item per line in the admin textarea; falls back to $default if the
  * saved value is blank or parses to nothing.
@@ -75,11 +65,6 @@ function jt_sanitize_marquee_speed( $value ) {
 	return $value > 0 ? $value : 34;
 }
 
-function jt_sanitize_flap_speed( $value ) {
-	$value = (float) $value;
-	return $value > 0 ? $value : 1;
-}
-
 function jt_register_tools_widget_settings() {
 	register_setting(
 		'jt_settings_group',
@@ -99,30 +84,12 @@ function jt_register_tools_widget_settings() {
 			'default'           => 34,
 		)
 	);
-	register_setting(
-		'jt_settings_group',
-		'jt_tools_flap_items',
-		array(
-			'type'              => 'string',
-			'sanitize_callback' => 'sanitize_textarea_field',
-			'default'           => '',
-		)
-	);
-	register_setting(
-		'jt_settings_group',
-		'jt_tools_flap_speed',
-		array(
-			'type'              => 'number',
-			'sanitize_callback' => 'jt_sanitize_flap_speed',
-			'default'           => 1,
-		)
-	);
 
 	add_settings_section(
 		'jt_tools_widgets',
-		'Home page "Tools" widgets',
+		'Home page "Tools" marquee',
 		function () {
-			echo '<p>The scrolling marquee and the flip board below the home hero. One item per line; leave a list blank to use the built-in default.</p>';
+			echo '<p>The scrolling tools strip below the home hero. One item per line; leave the list blank to use the built-in default.</p>';
 		},
 		'jt-theme'
 	);
@@ -149,30 +116,6 @@ function jt_register_tools_widget_settings() {
 			'desc' => 'Seconds for one full scroll loop. Lower = faster. Default 34.',
 			'min'  => 5,
 			'step' => 1,
-		)
-	);
-	add_settings_field(
-		'jt_tools_flap_items',
-		'Flip board — items',
-		'jt_settings_field_textarea',
-		'jt-theme',
-		'jt_tools_widgets',
-		array(
-			'name' => 'jt_tools_flap_items',
-			'desc' => 'Blank = default list (' . count( jt_tools_flap_default_items() ) . ' curated tools).',
-		)
-	);
-	add_settings_field(
-		'jt_tools_flap_speed',
-		'Flip board — flip speed',
-		'jt_settings_field_number',
-		'jt-theme',
-		'jt_tools_widgets',
-		array(
-			'name' => 'jt_tools_flap_speed',
-			'desc' => 'Seconds per flip (the flip motion itself, not how long each word holds). Default 1.',
-			'min'  => 0.2,
-			'step' => 0.1,
 		)
 	);
 }
@@ -209,14 +152,17 @@ function jt_settings_field_number( $args ) {
    ========================================================================== */
 
 /**
- * Two duplicate sets back to back, scrolled left by exactly one set's width
- * (translateX(-50%) — see home-hero.css) for a seamless loop; the second is
- * aria-hidden since it's a visual duplicate, not new content.
+ * A label above the strip — previously the flip board carried this context
+ * ("Tools in the mix:"); now the marquee is the only tools widget, it needs
+ * its own. Two duplicate sets back to back, scrolled left by exactly one
+ * set's width (translateX(-50%) — see home-hero.css) for a seamless loop;
+ * the second is aria-hidden since it's a visual duplicate, not new content.
  */
 function jt_render_tools_marquee() {
 	$items = jt_tools_widget_parse_items( get_option( 'jt_tools_marquee_items', '' ), jt_tools_marquee_default_items() );
 	$speed = get_option( 'jt_tools_marquee_speed', 34 );
 	?>
+	<p class="jt-tools-marquee__label">Tools I reach for</p>
 	<div class="jt-tools-marquee">
 		<div class="jt-tools-marquee__track" style="animation-duration: <?php echo esc_attr( $speed ); ?>s;">
 			<?php for ( $set = 0; $set < 2; $set++ ) : ?>
@@ -227,23 +173,6 @@ function jt_render_tools_marquee() {
 				</div>
 			<?php endfor; ?>
 		</div>
-	</div>
-	<?php
-}
-
-/**
- * Single flap, whole-word flip (not per-character split-flap — word lengths
- * vary too much for a fixed character grid). tools-widgets.js drives the
- * cycle from data-items/data-speed; PHP only needs to print the first word
- * so there's real content before JS runs.
- */
-function jt_render_tools_flap() {
-	$items = jt_tools_widget_parse_items( get_option( 'jt_tools_flap_items', '' ), jt_tools_flap_default_items() );
-	$speed = get_option( 'jt_tools_flap_speed', 1 );
-	?>
-	<div class="jt-flap-widget" data-items="<?php echo esc_attr( wp_json_encode( $items ) ); ?>" data-speed="<?php echo esc_attr( $speed ); ?>">
-		<span class="jt-flap-widget__label">Tools in the mix:</span>
-		<span class="jt-flap"><span class="jt-flap__text"><?php echo esc_html( $items[0] ); ?></span></span>
 	</div>
 	<?php
 }
