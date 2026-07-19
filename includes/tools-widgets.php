@@ -164,26 +164,29 @@ function jt_settings_field_number( $args ) {
    ========================================================================== */
 
 /**
- * A label above the strip — previously the flip board carried this context
- * ("Tools in the mix:"); now the marquee is the only tools widget, it needs
- * its own. Two duplicate sets back to back, scrolled left by exactly one
- * set's width (translateX(-50%) — see home-hero.css) for a seamless loop;
- * the second is aria-hidden since it's a visual duplicate, not new content.
+ * A pinned label sits on the same line as the strip (2026-07-20 redesign —
+ * previously stacked above it) rather than scrolling with it; only the
+ * track to its right scrolls. Two duplicate sets back to back, scrolled
+ * left by exactly one set's width (translateX(-50%) — see home-hero.css)
+ * for a seamless loop; the second is aria-hidden since it's a visual
+ * duplicate, not new content.
  */
 function jt_render_tools_marquee() {
 	$items = jt_tools_widget_parse_items( get_option( 'jt_tools_marquee_items', '' ), jt_tools_marquee_default_items() );
 	$speed = get_option( 'jt_tools_marquee_speed', 34 );
 	?>
-	<p class="jt-tools-marquee__label">Tools I reach for</p>
-	<div class="jt-tools-marquee">
-		<div class="jt-tools-marquee__track" style="animation-duration: <?php echo esc_attr( $speed ); ?>s;">
-			<?php for ( $set = 0; $set < 2; $set++ ) : ?>
-				<div class="jt-tools-marquee__set"<?php echo 1 === $set ? ' aria-hidden="true"' : ''; ?>>
-					<?php foreach ( $items as $item ) : ?>
-						<span class="jt-tools-marquee__item"><?php echo esc_html( $item ); ?></span><span class="jt-tools-marquee__dot" aria-hidden="true"></span>
-					<?php endforeach; ?>
-				</div>
-			<?php endfor; ?>
+	<div class="jt-tools-row">
+		<span class="jt-tools-marquee__label">Tools I use</span>
+		<div class="jt-tools-marquee">
+			<div class="jt-tools-marquee__track" style="animation-duration: <?php echo esc_attr( $speed ); ?>s;">
+				<?php for ( $set = 0; $set < 2; $set++ ) : ?>
+					<div class="jt-tools-marquee__set"<?php echo 1 === $set ? ' aria-hidden="true"' : ''; ?>>
+						<?php foreach ( $items as $item ) : ?>
+							<span class="jt-tools-marquee__item"><?php echo esc_html( $item ); ?></span><span class="jt-tools-marquee__dot" aria-hidden="true"></span>
+						<?php endforeach; ?>
+					</div>
+				<?php endfor; ?>
+			</div>
 		</div>
 	</div>
 	<?php
