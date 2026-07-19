@@ -163,7 +163,7 @@
 /* ---- Tools band (marquee), below the hero ---- */
 
 .jt-tools-band {
-	background: var(--color-charcoal);
+	background: var(--surface-tools-band);
 }
 
 /* Pinned label + scrolling track share one line — the label never moves,
@@ -208,7 +208,7 @@
 	width: 70px;
 	z-index: 2;
 	pointer-events: none;
-	background: linear-gradient(270deg, var(--color-charcoal), transparent);
+	background: linear-gradient(270deg, var(--surface-tools-band), transparent);
 }
 
 .jt-tools-marquee__track {
@@ -280,7 +280,7 @@
 		width: 50px;
 		z-index: 2;
 		pointer-events: none;
-		background: linear-gradient(90deg, var(--color-charcoal), transparent);
+		background: linear-gradient(90deg, var(--surface-tools-band), transparent);
 	}
 
 	.jt-tools-marquee__item {
