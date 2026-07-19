@@ -125,8 +125,13 @@
 	   don't blend into one continuous band. --surface-card (not a plain
 	   white) so it still reads as "white" in light mode without staying
 	   blindingly white in dark mode - same token used for cards/the
-	   mobile nav panel elsewhere on the site. */
+	   mobile nav panel elsewhere on the site. In light mode specifically,
+	   --surface-card (#FFFFFF) and the page's own --color-bg (#FBFEFB)
+	   are close enough to read as the same color - a hairline border
+	   (same 0.5px convention as .jt-toggle/.post-comments) marks the
+	   boundary explicitly rather than relying on that contrast alone. */
 	background: var(--surface-card);
+	border-top: 0.5px solid var(--color-divider);
 }
 
 .about-toolkit .section-title {
