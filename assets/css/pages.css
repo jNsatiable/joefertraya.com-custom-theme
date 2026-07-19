@@ -119,11 +119,20 @@
 
 /* --- About: Full Toolkit --- */
 
+.about-toolkit {
+	/* Distinct from .about-quirks above (plain page background) and
+	   .jt-cta below (--color-light-section) so three sections in a row
+	   don't blend into one continuous band. */
+	background: var(--color-surface);
+}
+
 .about-toolkit .section-title {
 	text-align: center;
 }
 
-.about-toolkit__intro {
+/* Shared by any section-title intro line (currently More J Stuff and
+   Full Toolkit) - generalized on its second use rather than duplicated. */
+.section-intro {
 	text-align: center;
 	font-family: var(--font-body);
 	font-weight: 300;
