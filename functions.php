@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'JT_THEME_VERSION', '0.9.42' );
+define( 'JT_THEME_VERSION', '0.9.41' );
 
 require_once get_template_directory() . '/includes/migrate-post-2411.php';
 require_once get_template_directory() . '/includes/smtp-mail.php';
@@ -18,7 +18,6 @@ require_once get_template_directory() . '/includes/performance.php';
 require_once get_template_directory() . '/includes/contact-form.php';
 require_once get_template_directory() . '/includes/seed-privacy-page.php';
 require_once get_template_directory() . '/includes/tools-widgets.php';
-require_once get_template_directory() . '/includes/portfolio-gallery.php';
 
 function jt_theme_setup() {
 	add_theme_support( 'title-tag' );
@@ -65,19 +64,6 @@ function jt_enqueue_assets() {
 		wp_enqueue_script(
 			'jt-tools-marquee',
 			get_template_directory_uri() . '/assets/js/tools-marquee.js',
-			array(),
-			JT_THEME_VERSION,
-			array(
-				'strategy'  => 'defer',
-				'in_footer' => true,
-			)
-		);
-	}
-
-	if ( is_page( 'portfolio' ) ) {
-		wp_enqueue_script(
-			'jt-portfolio-gallery',
-			get_template_directory_uri() . '/assets/js/portfolio-gallery.js',
 			array(),
 			JT_THEME_VERSION,
 			array(
