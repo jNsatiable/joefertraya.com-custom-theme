@@ -16,6 +16,10 @@ Hand-built WordPress custom theme replacing the current Elementor site. No page 
 - `.htaccess` here is theme-level only (blocks web access to `*.md` and dotfiles on the live server) — it is NOT the WordPress root `.htaccess`, which stays unmanaged by git per the Framework doc.
 - `reference-files/` — gitignored copies of the live site's current theme, Elementor CSS, and content export. Read-only inputs, not part of the build.
 
+## Open items
+
+- **Portfolio page's Flickr iframe embeds** ("Retouching"/"Captures" sections) — a hand-built grid+lightbox replacement was built and shipped (PR #95), then reverted the same day (PR #96). Not a styling/interaction problem: replacing the embed silos photos to only this site, losing Flickr's own audience/discoverability ("reach") and orphaning Flickr's own captions/metadata. Any future attempt should preserve reach, not just fix the visual — either a pure styling fix that keeps the Flickr embed itself, or migrating only if a reach-comparable Flickr alternative is found. Don't re-attempt a self-hosted-only gallery without addressing this first.
+
 ## Workflow (from the Framework doc, non-negotiable)
 
 - Discuss before executing; a question is not a go-ahead.
