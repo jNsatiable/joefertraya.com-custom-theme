@@ -25,6 +25,8 @@
 	--surface-pill-on-charcoal: rgba(255, 255, 255, 0.08); /* pill-tag fill for a forced-charcoal surface (About "Full Toolkit") — same value as --surface-pill's own dark-mode value, but mode-invariant since the surface itself doesn't flip with the theme toggle */
 	--focus-ring: rgba(251, 146, 60, 0.25); /* accent glow on focused form fields — mode-invariant */
 	--surface-notice-error: #F5C6C6; /* error notice bg, charcoal text on top — mode-invariant */
+	--lightbox-backdrop: rgba(64, 63, 67, 0.94); /* Portfolio gallery lightbox overlay — charcoal-based, mode-invariant (it's covering the whole viewport regardless of theme) */
+	--gallery-tile-overlay: rgba(64, 63, 67, 0.35); /* Portfolio gallery grid tile hover scrim — same charcoal base as --lightbox-backdrop, lower opacity */
 	--surface-tools-band: #29282B; /* tools marquee band — same tone as --surface-bar's dark-mode color, reused mode-invariant so the band reads distinct from the charcoal hero/footer it sits between. Solid, not the header's rgba(41,40,43,0.85): the header's transparency exists for its frosted-glass float-over-content effect, which doesn't apply to a full-bleed section — kept as alpha, the marquee's edge-fade gradients would stack a second translucent layer on top of the band's own, compounding to a visibly darker patch right where each fade is most opaque (very visible in light mode, where the surrounding page is bright enough to expose the mismatch; nearly invisible in dark mode, which is why it wasn't caught immediately) */
 
 	/* Mode-dependent surfaces (dark values below) */

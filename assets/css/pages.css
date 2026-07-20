@@ -332,10 +332,205 @@
 	margin: 0 0 20px;
 }
 
-.gallery-section__embed img {
-	max-width: 100%;
+/* Grid + lightbox, replacing the old Flickr iframe embed (mocked up and
+   approved before building — see the Portfolio gallery memory note for
+   the PR #33/#34 backstory). Photos stay on Flickr's CDN; only the
+   iframe widget is gone, in favor of plain <img> tags this theme fully
+   controls. */
+.gallery-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+	gap: 14px;
+	text-align: left;
+}
+
+.gallery-tile {
+	position: relative;
+	aspect-ratio: 4 / 3;
+	border-radius: 10px;
+	overflow: hidden;
+	border: 0;
+	padding: 0;
+	cursor: pointer;
+	display: block;
+	width: 100%;
+	background: none;
+}
+
+.gallery-tile img {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	transition: transform 0.3s ease;
+}
+
+.gallery-tile__overlay {
+	position: absolute;
+	inset: 0;
+	background: var(--gallery-tile-overlay);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	opacity: 0;
+	transition: opacity 0.2s ease;
+}
+
+.gallery-tile__overlay svg {
+	width: 26px;
+	height: 26px;
+	color: var(--color-white);
+}
+
+@media (hover: hover) {
+	.gallery-tile:hover img {
+		transform: scale(1.06);
+	}
+
+	.gallery-tile:hover .gallery-tile__overlay {
+		opacity: 1;
+	}
+}
+
+.gallery-tile:focus-visible {
+	outline: 2px solid var(--color-accent);
+	outline-offset: 2px;
+}
+
+.lightbox {
+	position: fixed;
+	inset: 0;
+	background: var(--lightbox-backdrop);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 100;
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity 0.25s ease;
+}
+
+.lightbox.is-open {
+	opacity: 1;
+	pointer-events: auto;
+}
+
+.lightbox__stage {
+	position: relative;
+	width: min(900px, 90vw);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	transform: translateY(10px);
+	transition: transform 0.25s ease;
+}
+
+.lightbox.is-open .lightbox__stage {
+	transform: translateY(0);
+}
+
+.lightbox__frame {
+	position: relative;
+	width: 100%;
+	max-height: 80vh;
+	border-radius: 10px;
+	overflow: hidden;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.lightbox__image {
+	display: block;
+	width: 100%;
 	height: auto;
-	border-radius: 6px;
+	max-height: 80vh;
+	object-fit: contain;
+}
+
+.lightbox__meta {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	margin-top: 14px;
+	font-family: var(--font-body);
+	font-size: 13px;
+	color: rgba(255, 255, 255, 0.6);
+}
+
+.lightbox__close {
+	position: absolute;
+	top: -18px;
+	right: -18px;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	background: var(--color-white);
+	border: 0;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+.lightbox__close svg {
+	width: 16px;
+	height: 16px;
+	color: var(--color-charcoal);
+}
+
+.lightbox__nav {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 46px;
+	height: 46px;
+	border-radius: 50%;
+	background: var(--surface-pill-on-charcoal);
+	border: 0;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: background 0.2s ease;
+}
+
+.lightbox__nav svg {
+	width: 20px;
+	height: 20px;
+	color: var(--color-white);
+}
+
+@media (hover: hover) {
+	.lightbox__nav:hover {
+		background: var(--color-accent);
+	}
+}
+
+.lightbox__nav--prev {
+	left: -60px;
+}
+
+.lightbox__nav--next {
+	right: -60px;
+}
+
+@media (max-width: 760px) {
+	.lightbox__nav--prev {
+		left: 6px;
+	}
+
+	.lightbox__nav--next {
+		right: 6px;
+	}
+
+	.lightbox__close {
+		top: 10px;
+		right: 10px;
+	}
 }
 
 /* --- Blog --- */
