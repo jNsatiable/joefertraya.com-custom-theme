@@ -281,6 +281,19 @@
 	transform: rotate(180deg);
 }
 
+/* Mirrors the same "Pyramids" path horizontally, applied to alternating
+   dividers down the Portfolio page so consecutive edges don't repeat the
+   identical zigzag — a controlled alternation, not truly random. Needs
+   its own combined-with-.jt-divider--bottom rule since transform doesn't
+   compose across separate class rules on its own. */
+.jt-divider--flip {
+	transform: scaleX(-1);
+}
+
+.jt-divider--bottom.jt-divider--flip {
+	transform: rotate(180deg) scaleX(-1);
+}
+
 .jt-divider--fill-bg path {
 	fill: var(--color-bg);
 }
