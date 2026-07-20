@@ -15,7 +15,7 @@ get_header();
 		<p>For the meantime, feel free to explore his latest projects through the following channels. Additionally, a curated collection of his photography and retouching work is featured below.</p>
 		<?php jt_social_icons( 'portfolio-hero__social' ); ?>
 	</div>
-	<svg class="jt-divider jt-divider--bottom jt-divider--fill-light" viewBox="0 0 1000 100" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M761.9,44.1L643.1,27.2L333.8,98L0,3.8V0l1000,0v3.9"/></svg>
+	<svg class="jt-divider jt-divider--bottom jt-divider--flip jt-divider--fill-light" viewBox="0 0 1000 100" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M761.9,44.1L643.1,27.2L333.8,98L0,3.8V0l1000,0v3.9"/></svg>
 </section>
 
 <section class="page-section gallery-section gallery-section--tint">
@@ -37,7 +37,7 @@ get_header();
 			<a data-flickr-embed="true" href="https://www.flickr.com/photos/164769429@N03/albums/72177720314447888" title="Personal Captures: A Glimpse Into My Lens"><img src="https://live.staticflickr.com/1726/41458306675_d78d3af15f_b.jpg" width="1024" height="768" alt="Personal Captures: A Glimpse Into My Lens"></a>
 		</div>
 	</div>
-	<svg class="jt-divider jt-divider--bottom jt-divider--fill-light" viewBox="0 0 1000 100" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M761.9,44.1L643.1,27.2L333.8,98L0,3.8V0l1000,0v3.9"/></svg>
+	<svg class="jt-divider jt-divider--bottom jt-divider--flip jt-divider--fill-light" viewBox="0 0 1000 100" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M761.9,44.1L643.1,27.2L333.8,98L0,3.8V0l1000,0v3.9"/></svg>
 </section>
 
 <section class="page-section jt-cta">
