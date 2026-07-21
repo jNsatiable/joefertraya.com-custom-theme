@@ -12,17 +12,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Temporary marker to verify Hostinger auto-deployment actually updates
- * this specific FILE (not just adds new ones — deploy-check.txt from #4
- * only proved that). Removed by the follow-up cleanup PR once confirmed.
- */
-add_action( 'wp_head', 'jt_deploy_verify_marker', -1 );
-
-function jt_deploy_verify_marker() {
-	echo '<!-- deploy-verify:includes-performance-2026-07-21c -->' . "\n";
-}
-
-/**
  * Disable WordPress's built-in emoji-detection script/styles — unnecessary
  * on any modern browser (all have native emoji support), otherwise loads
  * wp-emoji-release.min.js + inline CSS on every single page. Ported
