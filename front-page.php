@@ -42,10 +42,9 @@ $jt_skills = array(
 		</div>
 	</div>
 	</div>
-</section>
-
-<section class="jt-tools-band">
-	<?php jt_render_tools_marquee(); ?>
+	<div class="home-hero__tools-overlay">
+		<?php jt_render_tools_marquee(); ?>
+	</div>
 </section>
 
 <?php
