@@ -19,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 add_action( 'wp_head', 'jt_deploy_verify_marker', -1 );
 
 function jt_deploy_verify_marker() {
-	echo '<!-- deploy-verify:includes-performance-2026-07-21b -->' . "\n";
+	echo '<!-- deploy-verify:includes-performance-2026-07-21c -->' . "\n";
 }
 
 /**
@@ -90,17 +90,29 @@ function jt_dequeue_unused_block_styles() {
  * end at 9999) — confirmed working live 2026-07-17, then found live
  * 2026-07-21 to have stopped stripping the tag despite the regex still
  * matching it byte-for-byte when tested against the unstripped output.
- * That points at something else now touching output buffering inside
- * that narrow wp_head window rather than the regex itself going stale.
- * Widened to wrap the entire front-end response instead (template_redirect,
- * which fires before any theme template loads, through shutdown, one of
- * the very last hooks in the request) — immune to that whole class of
- * problem since it isn't scoped to any single action's callback queue.
- * template_redirect never fires in wp-admin/AJAX/REST, so this only ever
- * wraps a normal front-end page render.
+ *
+ * First attempt widened this to wrap the entire front-end response
+ * (start on template_redirect, end on shutdown) on the theory that
+ * something else was touching output buffering inside the narrow
+ * wp_head window. Confirmed via a throwaway marker (#101) that the
+ * deploy pipeline and this file were never the problem — the marker's
+ * own wp_head output showed up live immediately, but global-styles
+ * still wasn't stripped, meaning jt_buffer_head_end's replacement
+ * never actually reached the browser. Root cause: WP core registers
+ * its own safety-net output-buffer flush as a raw shutdown function
+ * (wp_ob_end_flush_all(), outside the 'shutdown' action's own priority
+ * system entirely) to catch buffers left open by mistake — it can run
+ * before our 'shutdown'-hooked callback does, sending our buffer's
+ * original unmodified content before we get a chance to clean it.
+ *
+ * Ending back on wp_head sidesteps that race entirely (core's shutdown
+ * flush is a non-issue if there's no buffer left open by the time
+ * shutdown runs). Starting point stays on template_redirect, ending at
+ * PHP_INT_MAX instead of a fixed 9999 to sit after anything else that
+ * might hook wp_head at a very late priority.
  */
 add_action( 'template_redirect', 'jt_buffer_head_start', -9999 );
-add_action( 'shutdown', 'jt_buffer_head_end', 9999 );
+add_action( 'wp_head', 'jt_buffer_head_end', PHP_INT_MAX );
 
 function jt_buffer_head_start() {
 	ob_start();
