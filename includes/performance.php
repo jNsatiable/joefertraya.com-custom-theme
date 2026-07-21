@@ -71,20 +71,33 @@ function jt_dequeue_unused_block_styles() {
  * src> tag — WP_Styles::print_inline_style() builds the separate
  * "{handle}-inline-css" block through its own, unfiltered code path.
  *
- * Buffering wp_head and stripping the one specific tag by id is the only
+ * Buffering and stripping the one specific tag by id is the only
  * mechanism that reaches it regardless of when/how it's (re-)added — it
  * operates on the final output text, not the enqueue system.
+ *
+ * Originally scoped to just the wp_head action (start at priority -9999,
+ * end at 9999) — confirmed working live 2026-07-17, then found live
+ * 2026-07-21 to have stopped stripping the tag despite the regex still
+ * matching it byte-for-byte when tested against the unstripped output.
+ * That points at something else now touching output buffering inside
+ * that narrow wp_head window rather than the regex itself going stale.
+ * Widened to wrap the entire front-end response instead (template_redirect,
+ * which fires before any theme template loads, through shutdown, one of
+ * the very last hooks in the request) — immune to that whole class of
+ * problem since it isn't scoped to any single action's callback queue.
+ * template_redirect never fires in wp-admin/AJAX/REST, so this only ever
+ * wraps a normal front-end page render.
  */
-add_action( 'wp_head', 'jt_buffer_head_start', -9999 );
-add_action( 'wp_head', 'jt_buffer_head_end', 9999 );
+add_action( 'template_redirect', 'jt_buffer_head_start', -9999 );
+add_action( 'shutdown', 'jt_buffer_head_end', 9999 );
 
 function jt_buffer_head_start() {
 	ob_start();
 }
 
 function jt_buffer_head_end() {
-	$head = ob_get_clean();
-	echo preg_replace( "#<style id=['\"]global-styles-inline-css['\"][^>]*>.*?</style>\s*#s", '', $head );
+	$page = ob_get_clean();
+	echo preg_replace( "#<style id=['\"]global-styles-inline-css['\"][^>]*>.*?</style>\s*#s", '', $page );
 }
 
 /**
