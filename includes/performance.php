@@ -86,3 +86,24 @@ function jt_buffer_head_end() {
 	$head = ob_get_clean();
 	echo preg_replace( "#<style id=['\"]global-styles-inline-css['\"][^>]*>.*?</style>\s*#s", '', $head );
 }
+
+/**
+ * Preconnect to the Portfolio page's third-party origins — Flickr
+ * (live.staticflickr.com for the embed cover images, embedr.flickr.com
+ * for the enhancement script) and Google Tag Manager. Self-hosting isn't
+ * an option for the Flickr images (the Portfolio gallery open item in
+ * CLAUDE.md: the embed stays pointed at Flickr on purpose, to keep its
+ * own reach/discoverability), so this is the lighter-touch equivalent of
+ * what self-hosting did for fonts — skip the DNS+TLS round trip's
+ * latency even though the request itself still has to happen.
+ */
+add_filter( 'wp_resource_hints', 'jt_portfolio_preconnect_hints', 10, 2 );
+
+function jt_portfolio_preconnect_hints( $urls, $relation_type ) {
+	if ( 'preconnect' === $relation_type && is_page( 'portfolio' ) ) {
+		$urls[] = 'https://live.staticflickr.com';
+		$urls[] = 'https://embedr.flickr.com';
+		$urls[] = 'https://www.googletagmanager.com';
+	}
+	return $urls;
+}
