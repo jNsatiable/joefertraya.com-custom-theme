@@ -13,6 +13,9 @@
 	/* Tuck up behind the floating header so the charcoal runs edge-to-edge under the bar. */
 	margin-top: calc(var(--header-pull) * -1);
 	padding-top: calc(50px + var(--header-pull));
+	/* Reserves room for .home-hero__tools-overlay, pinned at the bottom — without
+	   this the vertically-centered card could render underneath the strip. */
+	padding-bottom: calc(50px + var(--tools-overlay-h));
 }
 
 .home-hero__container {
@@ -144,7 +147,7 @@
 	.home-hero {
 		min-height: 40vh;
 		padding: 10px 0;
-		padding-bottom: 60px;
+		padding-bottom: calc(60px + var(--tools-overlay-h));
 		margin-top: calc(var(--header-pull) * -1);
 		padding-top: calc(10px + var(--header-pull));
 	}
@@ -160,10 +163,23 @@
 	}
 }
 
-/* ---- Tools band (marquee), below the hero ---- */
+/* ---- Tools strip (marquee), pinned over the hero's bottom edge ----
+   Was a solid, full-bleed section below the hero; now lives inside the
+   hero itself so the strip can sit right above the footer with no gap
+   regardless of viewport height (the hero, not the strip, is what
+   .site-main > *:last-child stretches to fill leftover space — see
+   main.css). Translucent + blurred so the canvas's dot-network keeps
+   animating visibly behind it. */
 
-.jt-tools-band {
-	background: var(--surface-tools-band);
+.home-hero__tools-overlay {
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: var(--surface-tools-overlay);
+	backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(10px);
+	box-shadow: inset 0 1px 0 var(--tools-overlay-seam);
 }
 
 /* The whole row is a single link to the About page's full toolkit list —
@@ -290,36 +306,22 @@
 	transform: translate(-50%, 0);
 }
 
+/* Left fade is still needed even though the label sits right next to it —
+   the label only covers its own width, so without this, text scrolling
+   past that boundary pops in/out with a hard cut instead of a soft fade
+   (visible as a mid-word crop right after the label). A mask (opacity-only,
+   no paint of its own) rather than a solid-to-transparent gradient overlay:
+   the strip's own background is translucent now, and a second translucent
+   layer of the same color stacked on top at the fade would compound to a
+   visibly darker patch right there — see --surface-tools-overlay in
+   tokens.css. */
 .jt-tools-marquee {
 	position: relative;
 	overflow: hidden;
 	flex: 1;
 	min-width: 0;
-}
-
-/* Left fade is still needed even though the label sits right next to it —
-   the label only covers its own width, so without this, text scrolling
-   past that boundary pops in/out with a hard cut instead of a soft fade
-   (visible as a mid-word crop right after the label). */
-.jt-tools-marquee::before,
-.jt-tools-marquee::after {
-	content: "";
-	position: absolute;
-	top: 0;
-	bottom: 0;
-	width: 70px;
-	z-index: 2;
-	pointer-events: none;
-}
-
-.jt-tools-marquee::before {
-	left: 0;
-	background: linear-gradient(90deg, var(--surface-tools-band), transparent);
-}
-
-.jt-tools-marquee::after {
-	right: 0;
-	background: linear-gradient(270deg, var(--surface-tools-band), transparent);
+	-webkit-mask-image: linear-gradient(90deg, transparent, #000 70px, #000 calc(100% - 70px), transparent);
+	mask-image: linear-gradient(90deg, transparent, #000 70px, #000 calc(100% - 70px), transparent);
 }
 
 .jt-tools-marquee__track {
@@ -372,9 +374,9 @@
 		font-size: 11px;
 	}
 
-	.jt-tools-marquee::before,
-	.jt-tools-marquee::after {
-		width: 50px;
+	.jt-tools-marquee {
+		-webkit-mask-image: linear-gradient(90deg, transparent, #000 50px, #000 calc(100% - 50px), transparent);
+		mask-image: linear-gradient(90deg, transparent, #000 50px, #000 calc(100% - 50px), transparent);
 	}
 
 	.jt-tools-marquee__item {

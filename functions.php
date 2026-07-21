@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'JT_THEME_VERSION', '0.9.41' );
+define( 'JT_THEME_VERSION', '0.9.42' );
 
 require_once get_template_directory() . '/includes/migrate-post-2411.php';
 require_once get_template_directory() . '/includes/smtp-mail.php';
